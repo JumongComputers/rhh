@@ -23,6 +23,7 @@ const SecondBorderAnimation = () => (
 const Hero: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<Slider>(null);
+  const [animationKey, setAnimationKey] = useState<number>(0);
 
   const scrollToNextSection = () => {
     if (heroRef.current) {
@@ -34,10 +35,12 @@ const Hero: React.FC = () => {
 
   const goToPrev = () => {
     sliderRef.current?.slickPrev();
+    setAnimationKey((prevKey) => prevKey + 1);
   };
 
   const goToNext = () => {
     sliderRef.current?.slickNext();
+    setAnimationKey((prevKey) => prevKey + 1);
   };
 
   const settings = {
@@ -69,10 +72,11 @@ const Hero: React.FC = () => {
               {/* first borders */}
               <FirstBorderAnimation />
               <motion.h1
+                key={animationKey}
                 className="text-2xl md:text-6xl font-sarabun font-bold"
-                initial={{ y: -100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
+                initial={slide.initial}
+                animate={slide.animate}
+                transition={slide.transition}
               >
                 {slide.heading}
               </motion.h1>
