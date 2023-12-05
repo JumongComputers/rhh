@@ -43,6 +43,10 @@ const Hero: React.FC = () => {
     setAnimationKey((prevKey) => prevKey + 1);
   };
 
+  const handleBeforeChange = (oldIndex: number, newIndex: number) => {
+    setAnimationKey((prevKey) => prevKey + 1);
+  };
+
   const settings = {
     infinite: true,
     speed: 500,
@@ -50,6 +54,7 @@ const Hero: React.FC = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
+    beforeChange: handleBeforeChange,
   };
 
   return (
