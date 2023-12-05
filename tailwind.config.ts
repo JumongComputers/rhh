@@ -15,6 +15,7 @@ const config: Config = {
       },
       fontFamily: {
         roboto: "Roboto",
+        sarabun: "Sarabun",
       },
     },
   },
