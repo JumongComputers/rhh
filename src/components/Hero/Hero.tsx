@@ -7,27 +7,17 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const FirstBorderAnimation = () => (
-  <motion.div
-    className="flex flex-col gap-2"
-    initial={{ width: 0 }}
-    animate={{ width: "100%" }}
-    transition={{ duration: 0.8, ease: "easeInOut" }}
-  >
+  <div className="flex flex-col gap-2">
     <div className="border border-opacity-25 border-white w-full" />
     <div className="border-2 border-blue-400 w-full" />
-  </motion.div>
+  </div>
 );
 
 const SecondBorderAnimation = () => (
-  <motion.div
-    className="flex flex-col gap-2"
-    initial={{ width: 0 }}
-    animate={{ width: "100%" }}
-    transition={{ duration: 0.8, ease: "easeInOut" }}
-  >
+  <div className="flex flex-col gap-2">
     <div className="border-2 border-blue-400 w-full" />
     <div className="border border-opacity-25 border-white w-full" />
-  </motion.div>
+  </div>
 );
 
 const Hero: React.FC = () => {
