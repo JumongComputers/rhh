@@ -1,6 +1,6 @@
 import slides from "@/data/heroSlide";
 import { ArrowDownWideNarrow, ChevronLeft, ChevronRight } from "lucide-react";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -14,7 +14,7 @@ const FirstBorderAnimation = () => (
     transition={{ duration: 0.8, ease: "easeInOut" }}
   >
     <div className="border border-opacity-25 border-white w-full" />
-    <div className="border-2 border-white w-full" />
+    <div className="border-2 border-blue-400 w-full" />
   </motion.div>
 );
 
@@ -25,13 +25,14 @@ const SecondBorderAnimation = () => (
     animate={{ width: "100%" }}
     transition={{ duration: 0.8, ease: "easeInOut" }}
   >
-    <div className="border-2 border-white w-full" />
+    <div className="border-2 border-blue-400 w-full" />
     <div className="border border-opacity-25 border-white w-full" />
   </motion.div>
 );
 
 const Hero: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const sliderRef = useRef<Slider>(null);
 
   const scrollToNextSection = () => {
     if (heroRef.current) {
@@ -40,8 +41,6 @@ const Hero: React.FC = () => {
       });
     }
   };
-
-  const sliderRef = useRef<Slider>(null);
 
   const goToPrev = () => {
     sliderRef.current?.slickPrev();
@@ -81,7 +80,7 @@ const Hero: React.FC = () => {
               <FirstBorderAnimation />
               <motion.h1
                 className="text-2xl md:text-6xl font-sarabun font-bold"
-                initial={{ y: 50, opacity: 0 }}
+                initial={{ y: -100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
