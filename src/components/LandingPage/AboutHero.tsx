@@ -1,13 +1,13 @@
 const AboutHero: React.FC = () => {
   return (
-    <div className="md:flex-row flex-col flex w-full max-w-full justify-between mb-20 lg:mb-32 gap-8 items-center px-6 md:px-12 py-8">
+    <div className="md:flex-row flex-col flex w-full max-w-full justify-between mb-20 lg:mb-32 gap-8 items-center px-6 md:px-[8vw] py-8">
       {/* first content */}
       <div className="flex flex-col items-start gap-4">
         <span className="text-[#758585] uppercase font-normal text-base md:text-xl">
-          Welcome To Rise
+          Welcome To
         </span>
         <span className="text-[#282d3c] uppercase font-bold text-4xl md:text-6xl">
-          High Hotel
+          Rise High Hotel
         </span>
         <div className="border border-opacity-25 border-blue-400 w-20 mt-6" />
         <p className="text-[#758585] font-normal mt-4 text-lg">
