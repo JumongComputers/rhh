@@ -1,4 +1,5 @@
 import { Booking } from "@/data/bookingData";
+import Link from "next/link";
 
 interface BookingCardProps {
   data: Booking;
@@ -6,7 +7,7 @@ interface BookingCardProps {
 
 const BookingCard: React.FC<BookingCardProps> = ({ data }) => {
   return (
-    <div className="flex justify-center text-center gap-8 items-center flex-col w-full px-8 py-8 bg-white shadow-sm">
+    <div className="flex justify-center text-center gap-8 items-center flex-col w-full px-8 py-8 bg-white">
       <img src={data.image} alt={data.name} />
       <span className="text-[#282d3c] font-normal uppercase text-2xl">
         {data.name}
@@ -21,11 +22,13 @@ const BookingCard: React.FC<BookingCardProps> = ({ data }) => {
           / per night
         </span>
       </div>
-      <button className="bg-blue-400 w-full rounded-full p-3">
-        <span className="text-white text-center font-bold text-base px-3">
-          Book Now
-        </span>
-      </button>
+      <Link href="/rooms">
+        <button className="bg-blue-400 w-full rounded-full p-3">
+          <span className="text-white text-center font-bold text-base px-3">
+            Book Now
+          </span>
+        </button>
+      </Link>
     </div>
   );
 };
