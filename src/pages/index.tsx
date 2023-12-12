@@ -1,9 +1,9 @@
-import React from 'react';
-import Layout from '@/components/Layout/Layout';
-import Hero from '@/components/LandingPage/Hero/Hero';
-import AboutHero from '@/components/LandingPage/AboutHeroSection/AboutHero';
-import Grid from '@/components/LandingPage/Grid/Grid';
-import { GetStaticProps } from 'next';
+import AboutHero from "@/components/LandingPage/AboutHero";
+import BookRooms from "@/components/LandingPage/BookRooms";
+import Grid from "@/components/LandingPage/Grid/Grid";
+import Hero from "@/components/LandingPage/Hero";
+import Layout from "@/components/Layout";
+import { GetStaticProps } from "next";
 
 type Resource = {
   asset_id: string;
@@ -28,6 +28,8 @@ const Home: React.FC<HomeProps> = ({ data }) => {
       <Hero />
       <AboutHero />
       <Grid data={data} />
+
+      <BookRooms />
     </Layout>
   );
 };

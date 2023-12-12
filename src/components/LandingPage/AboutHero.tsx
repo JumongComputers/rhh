@@ -4,12 +4,15 @@ const AboutHero: React.FC = () => {
   return (
  <SectionWrapper>
      <div className="lg:flex-row flex-col flex w-full max-w-full justify-between mb-20 lg:mb-32 gap-8 items-center py-8">
+      
+      
+    <div className="md:flex-row flex-col flex w-full max-w-full justify-between mb-20 lg:mb-32 gap-8 items-center  py-8">
       {/* first content */}
-      <div className="flex flex-col text-center lg:items-start gap-4">
-        <span className="text-[#758585] uppercase font-normal text-4xl md:text-6xl">
-          Welcome To 
+      <div className="flex flex-col items-start gap-4">
+        <span className="text-[#758585] uppercase font-normal text-base md:text-xl">
+          Welcome To
         </span>
-        <h1 className="text-[#282d3c] uppercase font-bold text-4xl md:text-8xl scale-y-75">
+        <h1 className="text-[#282d3c] uppercase font-bold text-4xl md:text-8xl">
           Rise High Hotel
         </h1>
         <div className="border border-opacity-25 border-blue-400 w-20 mt-6" />
@@ -29,6 +32,7 @@ const AboutHero: React.FC = () => {
         alt="hotel building"
         className="lg:w-[50%] md:h-[50%] w-full h-full rounded-lg"
       />
+    </div>
     </div>
  </SectionWrapper>
   );
