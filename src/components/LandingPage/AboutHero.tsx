@@ -9,10 +9,10 @@ const AboutHero: React.FC = () => {
     <div className="md:flex-row flex-col flex w-full max-w-full justify-between mb-20 lg:mb-32 gap-8 items-center  py-8">
       {/* first content */}
       <div className="flex flex-col items-start gap-4">
-        <span className="text-[#758585] uppercase font-normal text-base md:text-xl">
-          Welcome To
+        <span className="text-[#758585] font-bold text-2xl md:text-6xl">
+          Welcome to
         </span>
-        <h1 className="text-[#282d3c] uppercase font-bold text-4xl md:text-8xl">
+        <h1 className="text-[#282d3c] uppercase font-bold font-jost text-4xl md:text-9xl">
           Rise High Hotel
         </h1>
         <div className="border border-opacity-25 border-blue-400 w-20 mt-6" />

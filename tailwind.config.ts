@@ -39,8 +39,10 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontFamily: {
-        roboto: "Roboto",
-        sarabun: "Sarabun",
+        dm: ["DM Sans, sans-serif",...defaultTheme.fontFamily.sans],
+        quicksand: ["Quicksand, sans-serif",...defaultTheme.fontFamily.sans],
+        jost: [ "Jost, sans-serif",...defaultTheme.fontFamily.sans]
+   
       },
     },
   },
