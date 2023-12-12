@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
-// const plugin = require('tailwindcss/plugin')
-// const defaultTheme = require('tailwindcss/defaultTheme')
+const plugin = require('tailwindcss/plugin')
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 const config: Config = {
   content: [
@@ -32,6 +32,7 @@ const config: Config = {
       '2xl': '1536px',
     },
     extend: {
+      
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -44,11 +45,11 @@ const config: Config = {
     },
   },
   plugins: [
-    // plugin(function ({ addBase } ) {
-    //   addBase({
-    //     html: { fontSize: '10px' },
-    //   })
-    // }),
+    plugin(function ({ addBase }:{ addBase: Function }) {
+      addBase({
+        html: { fontSize: '10px' },
+      })
+    }),
   ],
 };
 export default config;

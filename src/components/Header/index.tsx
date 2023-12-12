@@ -17,12 +17,12 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <nav className="bg-[#2c2c2c] top-0 left-0 sticky lg:relative z-10 flex items-center px-[8vw] py-4 justify-between gap-4">
+      <nav className="bg-[#2c2c2c] top-0 left-0 sticky lg:relative z-10 flex items-center px-[8vw] py-8 justify-between gap-4">
         <Link href="/">
-          <img src="/rise high (1).svg" alt="Logo" className="h-16 w-16" />
+          <img src="/rise high (1).svg" alt="Logo" className="h-24 w-24 rounded-md"  />
         </Link>
         <ul
-          className={`lg:flex text-white gap-8 font-light text-lg ${
+          className={`lg:flex text-white gap-8 font-light text-2xl ${
             isSidebarOpen ? "hidden" : "hidden md:flex"
           }`}
         >
