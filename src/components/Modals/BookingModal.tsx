@@ -17,11 +17,11 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose }) =
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       contentLabel="Booking Modal"
-      className="absolute top-1/2 left-1/2 z-20 transform -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-4 w-full h-[60vh] lg:h-[80vh] max-w-xl md:max-w-4xl"
+      className="absolute top-1/2 left-1/2 z-20 transform overflow-y-auto -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-4 w-full h-[60vh] lg:h-[80vh] max-w-xl md:max-w-4xl"
       overlayClassName="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center"
     >
       <div className="w-full">
-        <div className="bg-white p-4">
+        <div className="bg-white p-4 flex flex-col gap-4">
           {/* Check-In and Check-Out */}
           <div className="flex space-x-6 mb-4">
             <div className="flex-1">
