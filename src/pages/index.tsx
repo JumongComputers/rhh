@@ -34,22 +34,25 @@ const Home: React.FC<HomeProps> = ({ data }) => {
   );
 };
 
-
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   try {
-    const response: APIResponse  = await fetch(`https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/resources/image`, {
+    const response: APIResponse = await fetch(`https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/resources/image`, {
       headers: {
-        Authorization: `Basic ${Buffer.from(process.env.CLOUDINARY_API_KEY + ':' + process.env.CLOUDINARY_API_SECRET).toString('base64')}`,
+        Authorization: `Basic ${Buffer.from(process.env.CLOUDINARY_API_KEY + ":" + process.env.CLOUDINARY_API_SECRET).toString("base64")}`,
       },
-    }).then((res) => res.json()).catch((err)=> { throw new Error('Failed to fetch data', err)})
-//  console.log(response, 'response data');
+    })
+      .then((res) => res.json())
+      .catch((err) => {
+        throw new Error("Failed to fetch data", err);
+      });
+    //  console.log(response, 'response data');
 
     return {
       props: {
-        data: response.resources
+        data: response.resources,
       },
     };
-  } catch (error:any) {
+  } catch (error: any) {
     // console.error('Error fetching data:', error.message);
     return {
       props: {
