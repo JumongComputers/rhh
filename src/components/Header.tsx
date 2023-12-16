@@ -21,7 +21,7 @@ const Header: React.FC = () => {
         <Link href="/">
           <img src="/rise high (1).svg" alt="Logo" className="h-24 w-24 rounded-md" />
         </Link>
-        <ul className={`lg:flex text-white gap-8 font-light text-2xl ${isSidebarOpen ? "hidden" : "hidden md:flex"}`}>
+        <ul className={`lg:flex text-white gap-8 font-medium text-3xl ${isSidebarOpen ? "hidden" : "hidden md:flex"}`}>
           <li className={`hover:text-blue-400 ${router.pathname === "/" ? "text-blue-400" : ""}`}>
             <Link href="/">Home</Link>
           </li>
