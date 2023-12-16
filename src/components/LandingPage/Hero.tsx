@@ -78,7 +78,7 @@ const Hero: React.FC = () => {
               <FirstBorderAnimation />
               <motion.h1
                 key={animationKey}
-                className="text-2xl md:text-6xl font-sarabun font-bold"
+                className="text-4xl md:text-7xl lg:text-9xl font-sarabun font-bold"
                 initial={slide.initial}
                 animate={slide.animate}
                 transition={slide.transition}
