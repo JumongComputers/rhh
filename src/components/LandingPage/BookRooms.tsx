@@ -15,7 +15,11 @@ const BookRooms: React.FC = () => {
 
   return (
     <div className="relative h-[340vh] lg:h-full bg-black mb-20 lg:mb-32 ">
-      <img src="/images/hero1.jpg" alt="room image" className="w-full bg-black opacity-25 h-full object-cover" />
+      <img
+        src="https://res.cloudinary.com/dyijwff8m/image/upload/v1702731461/gridex/ab2_gabvo7.webp"
+        alt="room image"
+        className="w-full bg-black opacity-25 h-full object-cover"
+      />
       {/* content */}
       <div
         className="absolute inset-0 flex flex-col px-6 md:px-[8%] gap-12 justify-center xl:gap-20 text-white"
