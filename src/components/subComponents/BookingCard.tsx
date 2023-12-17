@@ -19,7 +19,7 @@ const BookingCard: React.FC<BookingCardProps> = ({ data }) => {
   const closeModal = () => setModalOpen(false);
 
   return (
-    <div className="flex text-center h-[75vh] sm:h-[75vh] lg:h-[50vh] xl:h-[80vh] gap-8 items-center flex-col w-full px-8 py-8 bg-white">
+    <div className="flex text-center h-[75vh] sm:h-[75vh] md:h-[80vh] lg:h-[50vh] xl:h-[80vh] gap-8 items-center flex-col w-full px-8 py-8 bg-white">
       <div className="relative" onMouseEnter={() => setOverlayVisible(true)} onMouseLeave={() => setOverlayVisible(false)}>
         <img src={data.image} alt={data.name} />
         {isOverlayVisible && (
@@ -32,7 +32,7 @@ const BookingCard: React.FC<BookingCardProps> = ({ data }) => {
       </div>
       <span className="text-[#282d3c] font-normal uppercase text-5xl">{data.name}</span>
       <span className="text-[#282d3c] font-normal text-xl">{data.numOfRooms}</span>
-      <span className="text-[#282d3c] font-normal h-[9rem] text-xl">{data.text}</span>
+      <span className="text-[#282d3c] font-normal h-[9rem] text-xl md:text-4xl lg:text-xl">{data.text}</span>
       <div className="flex gap-1 items-center text-5xl">
         <span className="text-[#282d3c] font-bold text-5xl">{data.price}</span>
         <span className="text-[#282d3c] font-bold text-2xl text-opacity-25">/ per night</span>

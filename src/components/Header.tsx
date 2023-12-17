@@ -34,9 +34,9 @@ const Header: React.FC = () => {
           <li className={`hover:text-blue-400 ${router.pathname === "/contact" ? "text-blue-400" : ""}`}>
             <Link href="/contact">Contact Us</Link>
           </li>
-          <li className={`hover:text-blue-400 ${router.pathname === "/auth/login" ? "text-blue-400" : ""}`}>
+          {/* <li className={`hover:text-blue-400 ${router.pathname === "/auth/login" ? "text-blue-400" : ""}`}>
             <Link href="/auth/login">Sign in</Link>
-          </li>
+          </li> */}
         </ul>
         <div className="md:hidden" onClick={toggleSidebar}>
           <Menu size={24} color="white" />
@@ -63,9 +63,9 @@ const Header: React.FC = () => {
               <li className={`hover:text-blue-400 ${router.pathname === "/contact" ? "text-blue-400" : ""}`}>
                 <Link href="/contact">Contact Us</Link>
               </li>
-              <li className={`hover:text-blue-400 ${router.pathname === "/auth/login" ? "text-blue-400" : ""}`}>
+              {/* <li className={`hover:text-blue-400 ${router.pathname === "/auth/login" ? "text-blue-400" : ""}`}>
                 <Link href="/auth/login">Sign in</Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

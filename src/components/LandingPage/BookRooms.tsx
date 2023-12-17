@@ -14,7 +14,7 @@ const BookRooms: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative h-[340vh] lg:h-full bg-black mb-20 lg:mb-32 ">
+    <div className="relative h-[340vh] lg:h-full bg-black mb-20 lg:mb-32">
       <img
         src="https://res.cloudinary.com/dyijwff8m/image/upload/v1702731461/gridex/ab2_gabvo7.webp"
         alt="room image"

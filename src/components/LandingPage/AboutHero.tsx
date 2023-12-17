@@ -13,7 +13,7 @@ const AboutHero: React.FC = () => {
         <span className="text-[#758585] font-bold text-2xl md:text-6xl">
           Welcome to
         </span>
-        <h1 className=" uppercase font-bold  font-sarabun text-4xl md:text-9xl text-blue-800">
+        <h1 className=" uppercase font-bold  font-jost text-4xl md:text-9xl text-blue-800">
           Rise High Hotel
         </h1>
         <div className="border border-opacity-25 border-blue-400 w-20 mt-6" />

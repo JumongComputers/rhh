@@ -27,9 +27,10 @@ const Home: React.FC<HomeProps> = ({ data }) => {
     <Layout customClass="min-h-screen w-full max-w-full">
       <Hero />
       <AboutHero />
+        <BookRooms />
       <Grid data={data} />
 
-      <BookRooms />
+    
     </Layout>
   );
 };
