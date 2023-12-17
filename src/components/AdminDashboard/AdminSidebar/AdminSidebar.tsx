@@ -59,7 +59,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ children }) => {
       <LogoutModel visible={showModel} onClose={() => setShowModel(false)}>
         <div className="flex flex-col items-center gap-4">
           <div className="flex justify-between gap-12 items-center">
-            <img src="/confirm-logout.svg" alt="logout" />
+            <LogOut />
             <span className="text-[#19202C] font-bold text-3xl"> Logout Confirmation </span>
           </div>
           <p className="text-[#676869] font-normal text-2xl ">Are you sure you want to logout from your account?</p>
