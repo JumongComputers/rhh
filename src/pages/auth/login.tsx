@@ -10,5 +10,5 @@ export default function LoginAdmin() {
 }
 
 LoginAdmin.authAdmin = function pageLayout(page: React.ReactNode) {
-  return <div className="bg-[#0D60D8] font-sarabun w-full h-screen">{page}</div>;
+  return <div className=" font-sarabun w-full">{page}</div>;
 };

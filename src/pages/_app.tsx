@@ -27,7 +27,9 @@ export default function App({ Component, pageProps }: AppProps) {
         </AdminLayout>
       ) : isAdminAuth ? (
         <AdminLayout>
-          <Component {...pageProps} />
+          <div className="lg:bg-[#0D60D8]  h-screen">
+            <Component {...pageProps} />
+          </div>
         </AdminLayout>
       ) : (
         <LayoutWrapper>
