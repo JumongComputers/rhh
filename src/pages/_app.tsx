@@ -22,12 +22,16 @@ export default function App({ Component, pageProps }: AppProps) {
       {isAdmin ? (
         <AdminLayout>
           <AdminSidebar>
-            <Component {...pageProps} />
+            <div className="bg-gray-100">
+              <Component {...pageProps} />
+            </div>
           </AdminSidebar>
         </AdminLayout>
       ) : isAdminAuth ? (
         <AdminLayout>
-          <Component {...pageProps} />
+          <div className="lg:bg-[#0D60D8]  h-screen">
+            <Component {...pageProps} />
+          </div>
         </AdminLayout>
       ) : (
         <LayoutWrapper>
