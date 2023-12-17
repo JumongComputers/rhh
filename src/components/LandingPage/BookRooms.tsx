@@ -30,7 +30,7 @@ const BookRooms: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 grid-cols-1 gap-8 lg:gap-12" data-aos="fade-up" data-aos-duration="1000">
+        <div className="grid lg:grid-cols-3 grid-cols-1 gap-8 lg:gap-12 lg:pb-12" data-aos="fade-up" data-aos-duration="1000">
           {bookingData.map((data: Booking, index: number) => (
             <div key={index} data-aos="fade-up" data-aos-duration="1000">
               <BookingCard data={data} />

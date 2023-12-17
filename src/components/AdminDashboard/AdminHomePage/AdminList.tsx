@@ -11,8 +11,6 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const AdminList: React.FC = () => {
   const [search, setSearch] = useState<string>("");
   const [currentPage, setCurrentPage] = useState(0);
-  const [pageCount, setPageCount] = useState<number>(0);
-  const [itemOffset, setItemOffset] = useState<number>(0);
   const itemsPerPage = 5;
 
   // Dummy data
@@ -50,7 +48,7 @@ const AdminList: React.FC = () => {
 
   return (
     <div>
-      <div className="font-[DM Sans] w-full md:bg-transparent ">
+      <div className="font-dm w-full md:bg-transparent ">
         <div className="flex justify-between items-center px-4 py-6 ">
           <SearchInput value={search} onChange={(e) => setSearch(e.target.value)} />
           <Nav />
@@ -62,11 +60,11 @@ const AdminList: React.FC = () => {
         <div style={{ boxShadow: "2px 8px 24px rgba(12, 33, 50, 0.08)" }} className="bg-white rounded-md  ">
           <div className="p-4 w-full  overflow-x-auto ">
             <div className="flex justify-between py-4 w-full items-center pb-5 border-b border-[#E0E0E0]">
-              <div className="text-black text-lg font-bold">
+              <div className="text-black text-3xl font-bold">
                 <h3>Recent registered Vehicle</h3>
               </div>
               <div>
-                <Link href="/admin/vehicles" className="text-[#0D60D8]  text-sm">
+                <Link href="/admin/vehicles" className="text-[#0D60D8]  text-xl">
                   <button className=" bg-white rounded-md px-6 py-2 font-bold border border-[#E0E0E0]">View all</button>
                 </Link>
               </div>
@@ -76,8 +74,8 @@ const AdminList: React.FC = () => {
               {vehicles?.length === 0 ? (
                 <span>-- No vehicle found, please add a vehicle...</span>
               ) : (
-                <table className="w-full  text-sm">
-                  <thead style={{ boxShadow: "0px 0px 54px rgba(12, 33, 50, 0.08)" }} className="text-[#0D60D8] text-sm  ">
+                <table className="w-full">
+                  <thead style={{ boxShadow: "0px 0px 54px rgba(12, 33, 50, 0.08)" }} className="text-[#0D60D8] text-xl ">
                     <tr className="">
                       <th className="py-3">Unique ID</th>
                       <th className="py-3">Vehicle type</th>
@@ -97,7 +95,7 @@ const AdminList: React.FC = () => {
                         const adminId = AdminId && typeof AdminId === "object" ? AdminId._id : AdminId;
 
                         return (
-                          <tr key={_id} className="text-sm text-center border-b border-[#E0E0E0] ">
+                          <tr key={_id} className="text-xl text-center border-b border-[#E0E0E0] ">
                             <td className="py-3 px-2">
                               <span className="text-[#828282] font-bold ">{shortenText(userId || adminId, 4)}</span>
                             </td>
@@ -108,13 +106,13 @@ const AdminList: React.FC = () => {
                             <td className="py-3 px-12">{affliliation}</td>
                             <td className="py-4">
                               {status === "Pending" && (
-                                <button className="text-[#F2994A] bg-[#F3EEDE] rounded-2xl font-bold  py-3 px-12 text-sm">{status}</button>
+                                <button className="text-[#F2994A] bg-[#F3EEDE] rounded-2xl font-bold  py-3 px-12 text-xl">{status}</button>
                               )}
                               {status === "Verified" && (
-                                <button className="text-[#0D60D8] bg-[#F5F5F5] rounded-2xl font-bold  py-3 px-12  text-sm">{status}</button>
+                                <button className="text-[#0D60D8] bg-[#F5F5F5] rounded-2xl font-bold  py-3 px-12  text-xl">{status}</button>
                               )}
                               {status === "Declined" && (
-                                <button className="text-[#FF0000] bg-[#E50C0C] bg-opacity-10 rounded-2xl font-bold py-3 px-12  text-sm">
+                                <button className="text-[#FF0000] bg-[#E50C0C] bg-opacity-10 rounded-2xl font-bold py-3 px-12  text-xl">
                                   Declined
                                 </button>
                               )}
@@ -133,7 +131,7 @@ const AdminList: React.FC = () => {
           <ReactPaginate
             previousLabel={
               <span
-                className={`border-solid border-[#7a7a7a] bg-white flex flex-col w-8 h-8 text-center shrink-0 items-center py-2 border rounded ${
+                className={`border-solid border-[#7a7a7a] bg-white flex flex-col w-12 h-12 text-center shrink-0 items-center py-2 border rounded ${
                   currentPage === 0 ? "cursor-not-allowed opacity-50" : ""
                 }`}
                 onClick={() => currentPage > 0 && handlePageClick({ selected: currentPage - 1 })}
@@ -145,7 +143,7 @@ const AdminList: React.FC = () => {
               <span
                 className={`border-solid border-[#7a7a7a] ${
                   !hasMorePages ? "cursor-not-allowed opacity-50" : ""
-                } bg-white flex flex-col w-8 h-8 text-center shrink-0 items-center py-2 border rounded`}
+                } bg-white flex flex-col w-12 h-12 text-center shrink-0 items-center py-2 border rounded`}
                 onClick={() => hasMorePages && handlePageClick({ selected: currentPage + 1 })}
               >
                 <ChevronRight />
@@ -159,7 +157,7 @@ const AdminList: React.FC = () => {
             onPageChange={handlePageClick}
             containerClassName="flex gap-2 items-center justify-center mt-8 mb-4"
             activeClassName="bg-[#d8e4ff]"
-            pageClassName="border-solid border-[#7a7a7a] bg-white flex flex-col w-8 h-8 text-center shrink-0 items-center py-1 gap-2 border rounded  font-bold leading-[20px] text-[#1a183e] text-sm font-montserrat"
+            pageClassName="border-solid border-[#7a7a7a] bg-white flex flex-col w-12 h-12 text-center shrink-0 items-center py-1 gap-2 border rounded  font-bold leading-[20px] text-[#1a183e] text-xl font-montserrat"
           />
         </div>
       </div>

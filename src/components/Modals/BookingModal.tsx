@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { X } from "lucide-react";
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -17,31 +18,42 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose }) =
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       contentLabel="Booking Modal"
-      className="absolute top-1/2 left-1/2 z-20 transform overflow-y-auto -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-4 w-full h-[60vh] lg:h-[80vh] max-w-xl md:max-w-4xl"
+      className="absolute top-1/2 left-1/2 z-20 transform overflow-y-auto -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white  p-4 w-full h-[60vh] lg:h-[80vh] max-w-xl md:max-w-4xl"
       overlayClassName="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center"
     >
-      <div className="w-full">
+      <div className="w-full space-y-8 relative">
+        <div className="pb-8">
+          <X className="absolute top-2 right-2 cursor-pointer text-gray-500 hover:text-gray-700" size={35} onClick={onRequestClose} />
+        </div>
         <div className="bg-white p-4 flex flex-col gap-4">
-          {/* Check-In and Check-Out */}
-          <div className="flex space-x-6 mb-4">
-            <div className="flex-1">
-              <label className="block text-lg lg:text-2xl font-medium text-gray-700">Check-In</label>
-              <DatePicker className="w-full border p-3 rounded-md text-lg" selected={checkInDate} onChange={(date) => setCheckInDate(date as Date)} />
-            </div>
-            <div className="flex-1">
-              <label className="block text-lg lg:text-2xl font-medium text-gray-700">Check-Out</label>
-              <DatePicker
-                className="w-full border p-3 rounded-md text-lg"
-                selected={checkOutDate}
-                onChange={(date) => setCheckOutDate(date as Date)}
-              />
-            </div>
+          {/*First Name */}
+          <div className="mb-4">
+            <label className="block text-2xl font-medium text-gray-700">First Name</label>
+            <input type="text" className="w-full border p-2 rounded-md text-lg" />
+          </div>
+
+          {/*Last Name */}
+          <div className="mb-4">
+            <label className="block text-2xl font-medium text-gray-700">Last Name</label>
+            <input type="text" className="w-full border p-2 rounded-md text-lg" />
+          </div>
+
+          {/* Email */}
+          <div className="mb-4">
+            <label className="block text-2xl font-medium text-gray-700">Email</label>
+            <input type="email" className="w-full border p-2 rounded-md text-lg" />
+          </div>
+
+          {/* Phone Number */}
+          <div className="mb-4">
+            <label className="block text-2xl font-medium text-gray-700">Phone Number</label>
+            <input type="tel" className="w-full border p-2 rounded-md text-lg" />
           </div>
 
           {/* Room Type */}
           <div className="mb-4">
-            <label className="block text-lg lg:text-2xl font-medium text-gray-700">Room Type</label>
-            <select className="w-full border p-2 rounded-md">
+            <label className="block text-2xl font-medium text-gray-700">Room Type</label>
+            <select className="w-full border p-2 rounded-md text-lg">
               <option value="single">Single Room</option>
               <option value="double">Double Room</option>
               {/* Add more options as needed */}
@@ -50,37 +62,36 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose }) =
 
           {/* Guests */}
           <div className="mb-4">
-            <label className="block text-lg lg:text-2xl font-medium text-gray-700">Guests</label>
-            <select className="w-full border p-2 rounded-md">
+            <label className="block text-2xl font-medium text-gray-700">Guests</label>
+            <select className="w-full border p-2 rounded-md text-lg">
               <option value="1">1 Guest</option>
               <option value="2">2 Guests</option>
               {/* Add more options as needed */}
             </select>
           </div>
 
-          {/* Name */}
-          <div className="mb-4">
-            <label className="block text-lg lg:text-2xl font-medium text-gray-700">Name</label>
-            <input type="text" className="w-full border p-2 rounded-md" />
+          {/* Check-In and Check-Out */}
+          <div className="flex space-x-6 mb-4">
+            <div className="flex-1">
+              <label className="block text-2xl font-medium text-gray-700">Check-In</label>
+              <DatePicker
+                className="lg:w-[240px] w-full border p-3 rounded-md text-lg"
+                selected={checkInDate}
+                onChange={(date) => setCheckInDate(date as Date)}
+              />
+            </div>
+            <div className="flex-1">
+              <label className="block text-2xl font-medium text-gray-700">Check-Out</label>
+              <DatePicker
+                className="lg:w-[240px] w-full border p-3 rounded-md text-lg"
+                selected={checkOutDate}
+                onChange={(date) => setCheckOutDate(date as Date)}
+              />
+            </div>
           </div>
 
-          {/* Email */}
-          <div className="mb-4">
-            <label className="block text-lg lg:text-2xl font-medium text-gray-700">Email</label>
-            <input type="email" className="w-full border p-2 rounded-md" />
-          </div>
-
-          {/* Phone Number */}
-          <div className="mb-4">
-            <label className="block text-lg lg:text-2xl font-medium text-gray-700">Phone Number</label>
-            <input type="tel" className="w-full border p-2 rounded-md" />
-          </div>
-
-          <div className="flex text-2xl justify-end mt-6 space-x-4">
-            <button className="bg-gray-400 text-white px-4 py-2 rounded-md font-medium" onClick={onRequestClose}>
-              Cancel
-            </button>
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-md font-medium">Book Now</button>
+          <div className="flex justify-center mt-6">
+            <button className="bg-blue-500 text-white px-4 py-2 w-full rounded-md font-medium text-2xl">Book Now</button>
           </div>
         </div>
       </div>

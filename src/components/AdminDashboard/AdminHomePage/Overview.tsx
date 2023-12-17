@@ -28,7 +28,7 @@ const Overview: React.FC = () => {
 
   return (
     <div className="w-full px-4 py-6">
-      <h3 className="text-[#19202C] mb-4 font-bold text-3xl">Overview</h3>
+      <h3 className="text-[#19202C] mb-4 font-bold text-5xl">Overview</h3>
       <div className="flex flex-col lg:flex-row  gap-3">
         <InfoBox url={"/admin/vehicles"} icon={regVehicleIcon} title={"Registered vehicles"} count={vehiclesCount} text={addVehicleLink} />
         <InfoBox url={"/admin/reports"} icon={reportIcon} title={"Incident Reports"} count={reportsCount} text={paymentLink} />
