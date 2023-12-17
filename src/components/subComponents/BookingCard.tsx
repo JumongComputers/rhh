@@ -11,7 +11,9 @@ const BookingCard: React.FC<BookingCardProps> = ({ data }) => {
   const [isOverlayVisible, setOverlayVisible] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const toggleImagePreview = () => setOverlayVisible(!isOverlayVisible);
+  const toggleImagePreview = () => {
+    window.open(data.image, "_blank");
+  };
 
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
