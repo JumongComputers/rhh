@@ -14,7 +14,7 @@ const BookRooms: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative h-[220vh] lg:h-full bg-black mb-20 lg:mb-32 ">
+    <div className="relative h-[340vh] lg:h-full bg-black mb-20 lg:mb-32 ">
       <img src="/images/hero1.jpg" alt="room image" className="w-full bg-black opacity-25 h-full object-cover" />
       {/* content */}
       <div
@@ -30,7 +30,7 @@ const BookRooms: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 grid-cols-1 gap-8 lg:gap-12 lg:pb-12" data-aos="fade-up" data-aos-duration="1000">
+        <div className="grid lg:grid-cols-4 grid-cols-1 gap-8 lg:gap-12 lg:pb-12" data-aos="fade-up" data-aos-duration="1000">
           {bookingData.map((data: Booking, index: number) => (
             <div key={index} data-aos="fade-up" data-aos-duration="1000">
               <BookingCard data={data} />
