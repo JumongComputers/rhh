@@ -24,7 +24,7 @@ const BookRooms: React.FC = () => {
       >
         <div className="flex flex-col gap-2 lg:justify-center lg:items-center px-8 lg:px-[8vw]  text-center">
           <h1 className="lg:text-8xl text-6xl font-bold">Our Rooms</h1>
-          <p className="font-normal text-base md:text-2xl opacity-70">
+          <p className="font-normal max-w-6xl text-base md:text-2xl opacity-70">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores atque quia doloribus dignissimos fugit vitae perferendis! Ut adipisci,
             laboriosam nulla aliquam vero dolore natus optio culpa in! Blanditiis, quos repellat?
           </p>
