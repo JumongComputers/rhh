@@ -7,6 +7,7 @@ import Overview from "./Overview";
 import Nav from "./Nav";
 import SearchInput from "../SubAdmin/Search";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import StatusMenu from "../SubAdmin/StatusMenu";
 
 const AdminList: React.FC = () => {
   const [search, setSearch] = useState<string>("");
@@ -103,6 +104,7 @@ const AdminList: React.FC = () => {
                                   Declined
                                 </button>
                               )}
+                              {status === "Pending" ? <StatusMenu id={_id} /> : null}
                             </td>
                             <td className="py-3 px-12">{status}</td>
                           </tr>
