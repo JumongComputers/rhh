@@ -1,11 +1,9 @@
 export interface AdminDashboard {
   _id: string;
-  vehicleType: string;
-  vehiclePlateNum: string;
-  vehicleName: string;
-  affliliation: string;
-  vehicleColor: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  roomType: string;
+  roomNum: string;
   status: string;
-  UserId: { _id: string } | string;
-  AdminId: { _id: string } | string;
 }

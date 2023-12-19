@@ -16,11 +16,11 @@ const SearchInput: React.FC<SearchProps> = ({ value, onChange }) => {
           value={value}
           onChange={onChange}
           style={{ boxShadow: "0px 9px 17px rgba(0, 0, 0, 0.07)" }}
-          className="bg-white text-[#19202C] border border-[#E0E0E0] h-10 px-5 pl-10 rounded-md 
+          className="bg-white text-[#19202C] border border-[#E0E0E0] h-16 px-5 pl-16 rounded-md 
             text-lg focus:outline-none w-[773px]"
         />
         <button className="absolute left-0 top-0 mt-3 ml-4">
-          <Search className="text-gray-400 h-4 w-4" />
+          <Search className="text-gray-400 h-8 w-8" />
         </button>
       </div>
     </div>

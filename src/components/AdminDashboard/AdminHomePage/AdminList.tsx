@@ -14,32 +14,23 @@ const AdminList: React.FC = () => {
   const itemsPerPage = 5;
 
   // Dummy data
-  const vehicles: AdminDashboard[] = Array.from({ length: 20 }, (_, index) => ({
+  const bookings: AdminDashboard[] = Array.from({ length: 20 }, (_, index) => ({
     _id: `${index + 1}`,
-    vehicleType: `Type ${index + 1}`,
-    vehiclePlateNum: `Plate ${index + 1}`,
-    vehicleName: `Vehicle ${index + 1}`,
-    affliliation: `Affiliation ${index + 1}`,
-    vehicleColor: `Color ${index + 1}`,
+    firstName: `Type ${index + 1}`,
+    lastName: `Plate ${index + 1}`,
+    email: `Vehicle ${index + 1}`,
+    roomType: `Affiliation ${index + 1}`,
+    roomNum: `Color ${index + 1}`,
     status: index % 3 === 0 ? "Pending" : index % 3 === 1 ? "Verified" : "Declined",
-    UserId: { _id: `User${index + 1}` },
-    AdminId: { _id: `Admin${index + 1}` },
   }));
-
-  const shortenText = (text: string | undefined, n: number) => {
-    if (text && text.length > n) {
-      return text.substring(0, n).concat("...");
-    }
-    return text;
-  };
 
   // Calculate pagination
   const indexOfLastVehicle = (currentPage + 1) * itemsPerPage;
   const indexOfFirstVehicle = currentPage * itemsPerPage;
-  const currentItems = vehicles?.slice(indexOfFirstVehicle, indexOfLastVehicle);
+  const currentItems = bookings?.slice(indexOfFirstVehicle, indexOfLastVehicle);
 
   // Determine if there are more pages
-  const hasMorePages = indexOfLastVehicle < vehicles?.length;
+  const hasMorePages = indexOfLastVehicle < bookings?.length;
 
   // Handle pagination change
   const handlePageClick = (selected: { selected: number }) => {
@@ -61,7 +52,7 @@ const AdminList: React.FC = () => {
           <div className="p-4 w-full  overflow-x-auto ">
             <div className="flex justify-between py-4 w-full items-center pb-5 border-b border-[#E0E0E0]">
               <div className="text-black text-3xl font-bold">
-                <h3>Recent registered Vehicle</h3>
+                <h3>Recent Bookings</h3>
               </div>
               <div>
                 <Link href="/admin/vehicles" className="text-[#0D60D8]  text-xl">
@@ -71,39 +62,35 @@ const AdminList: React.FC = () => {
             </div>
 
             <div>
-              {vehicles?.length === 0 ? (
+              {bookings?.length === 0 ? (
                 <span>-- No vehicle found, please add a vehicle...</span>
               ) : (
                 <table className="w-full">
                   <thead style={{ boxShadow: "0px 0px 54px rgba(12, 33, 50, 0.08)" }} className="text-[#0D60D8] text-xl ">
                     <tr className="">
-                      <th className="py-3">Unique ID</th>
-                      <th className="py-3">Vehicle type</th>
-                      <th className="py-3">Vehicle model</th>
-                      <th className="py-3">Vehicle color</th>
-                      <th className="py-3">Plate No</th>
-                      <th className="py-3">Vehicle affiliation</th>
+                      <th className="py-3">First name</th>
+                      <th className="py-3">Last name</th>
+                      <th className="py-3">Email</th>
+                      <th className="py-3">Room type</th>
+                      <th className="py-3">Room number</th>
                       <th className="py-3">Status</th>
+                      <th className="py-3">Action</th>
                     </tr>
                   </thead>
 
                   <tbody>
-                    {vehicles &&
-                      currentItems.map((vehicle) => {
-                        const { _id, vehicleType, vehiclePlateNum, vehicleName, affliliation, vehicleColor, status, UserId, AdminId } = vehicle;
-                        const userId = UserId && typeof UserId === "object" ? UserId._id : UserId;
-                        const adminId = AdminId && typeof AdminId === "object" ? AdminId._id : AdminId;
+                    {bookings &&
+                      currentItems.map((booking) => {
+                        const { _id, firstName, lastName, roomType, roomNum, email, status } = booking;
 
                         return (
                           <tr key={_id} className="text-xl text-center border-b border-[#E0E0E0] ">
-                            <td className="py-3 px-2">
-                              <span className="text-[#828282] font-bold ">{shortenText(userId || adminId, 4)}</span>
-                            </td>
-                            <td className="py-3 px-12">{vehicleType}</td>
-                            <td className="py-3 px-12">{vehicleName}</td>
-                            <td className="py-3 px-12">{vehicleColor}</td>
-                            <td className="py-3 px-12">{vehiclePlateNum}</td>
-                            <td className="py-3 px-12">{affliliation}</td>
+                            <td className="py-3 px-12">{firstName}</td>
+                            <td className="py-3 px-12">{lastName}</td>
+                            <td className="py-3 px-12">{email}</td>
+                            <td className="py-3 px-12">{roomType}</td>
+                            <td className="py-3 px-12">{roomNum}</td>
+
                             <td className="py-4">
                               {status === "Pending" && (
                                 <button className="text-[#F2994A] bg-[#F3EEDE] rounded-2xl font-bold  py-3 px-12 text-xl">{status}</button>
@@ -117,6 +104,7 @@ const AdminList: React.FC = () => {
                                 </button>
                               )}
                             </td>
+                            <td className="py-3 px-12">{status}</td>
                           </tr>
                         );
                       })}
@@ -151,7 +139,7 @@ const AdminList: React.FC = () => {
             }
             breakLabel={"..."}
             // breakClassName={"break-me"}
-            pageCount={Math.ceil(vehicles?.length / itemsPerPage)}
+            pageCount={Math.ceil(bookings?.length / itemsPerPage)}
             marginPagesDisplayed={2}
             pageRangeDisplayed={5}
             onPageChange={handlePageClick}
