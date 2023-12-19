@@ -10,6 +10,15 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import StatusMenu from "../SubAdmin/StatusMenu";
 import ViewBookingModal from "../Modals/viewBookingModal";
 
+enum STATUS {
+  PENDING = "pending",
+  BOOKED = "booked",
+  AVAILABLE = "available",
+  UNAVAILABLE = "unavailable",
+  "IN USE" = "in use",
+  RESERVED = "reserved",
+}
+
 const AdminList: React.FC = () => {
   const [search, setSearch] = useState<string>("");
   const [currentPage, setCurrentPage] = useState(0);
@@ -23,7 +32,18 @@ const AdminList: React.FC = () => {
     email: `user@gmail.com ${index + 1}`,
     roomType: `deluxe ${index + 1}`,
     roomNum: `1 ${index + 1}`,
-    status: index % 3 === 0 ? "Pending" : index % 3 === 1 ? "Verified" : "Declined",
+    status:
+      index % 6 === 0
+        ? STATUS.PENDING
+        : index % 6 === 1
+        ? STATUS.BOOKED
+        : index % 6 === 2
+        ? STATUS.AVAILABLE
+        : index % 6 === 3
+        ? STATUS.UNAVAILABLE
+        : index % 6 === 4
+        ? STATUS["IN USE"]
+        : STATUS.RESERVED,
   }));
 
   // Calculate pagination
@@ -98,19 +118,35 @@ const AdminList: React.FC = () => {
                             <td className="py-3 px-12">{roomNum}</td>
 
                             <td className="py-4">
-                              {status === "Pending" && (
-                                <button className="text-[#F2994A] bg-[#F3EEDE] rounded-2xl font-bold  py-3 px-12 text-xl">{status}</button>
+                              {status === STATUS.PENDING && (
+                                <button className="text-[#F2994A] bg-[#F3EEDE] rounded-2xl font-bold py-3 px-12 text-xl">{status}</button>
                               )}
-                              {status === "Verified" && (
-                                <button className="text-[#0D60D8] bg-[#F5F5F5] rounded-2xl font-bold  py-3 px-12  text-xl">{status}</button>
+                              {status === STATUS.BOOKED && (
+                                <button className="text-[#0D60D8] bg-[#F5F5F5] rounded-2xl font-bold py-3 px-12 text-xl">{status}</button>
                               )}
-                              {status === "Declined" && (
-                                <button className="text-[#FF0000] bg-[#E50C0C] bg-opacity-10 rounded-2xl font-bold py-3 px-12  text-xl">
-                                  Declined
+                              {status === STATUS.AVAILABLE && (
+                                <button className="text-[#00FF00] bg-[#00FF00] bg-opacity-10 rounded-2xl font-bold py-3 px-12 text-xl">
+                                  {status}
                                 </button>
                               )}
-                              {status === "Pending" ? <StatusMenu id={_id} /> : null}
+                              {status === STATUS.UNAVAILABLE && (
+                                <button className="text-[#FF0000] bg-[#FF0000] bg-opacity-10 rounded-2xl font-bold py-3 px-12 text-xl">
+                                  {status}
+                                </button>
+                              )}
+                              {status === STATUS["IN USE"] && (
+                                <button className="text-[#000000] bg-[#000000] bg-opacity-10 rounded-2xl font-bold py-3 px-12 text-xl">
+                                  {status}
+                                </button>
+                              )}
+                              {status === STATUS.RESERVED && (
+                                <button className="text-[#8A2BE2] bg-[#8A2BE2] bg-opacity-10 rounded-2xl font-bold py-3 px-12 text-xl">
+                                  {status}
+                                </button>
+                              )}
+                              {status === STATUS.PENDING ? <StatusMenu id={_id} /> : null}
                             </td>
+
                             <td className="py-3 px-12 ">
                               <button
                                 onClick={() => {

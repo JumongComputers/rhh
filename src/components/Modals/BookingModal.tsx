@@ -94,10 +94,27 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
     }
   };
 
+  const calculateTotalAmount = () => {
+    const hoursInDay = 24;
+
+    // Check if checkInDate and checkOutDate are defined
+    if (checkInDate && checkOutDate) {
+      const totalHours = (checkOutDate.getTime() - checkInDate.getTime()) / (60 * 60 * 1000);
+      const numberOfDays = Math.ceil(totalHours / hoursInDay);
+
+      // Include the number of guests in the calculation
+      const totalAmount = numberOfDays * price * numberOfPerson;
+      return totalAmount * 100; // Convert to kobo
+    }
+
+    // Return a default value if either checkInDate or checkOutDate is undefined
+    return 0;
+  };
+
   const config = {
     reference: new Date().getTime().toString(),
     email,
-    amount: price * 100, // Amount in kobo
+    amount: calculateTotalAmount(),
     publicKey,
     text: "Complete Booking",
   };
