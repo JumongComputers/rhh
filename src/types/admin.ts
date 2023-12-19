@@ -7,3 +7,12 @@ export interface AdminDashboard {
   roomNum: string;
   status: string;
 }
+
+export interface AddAdminTypes {
+  role: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  phoneNum: number;
+}
