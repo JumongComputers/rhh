@@ -99,7 +99,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
     email,
     amount: price * 100, // Amount in kobo
     publicKey,
-    text: "Pay Now",
+    text: "Complete Booking",
   };
 
   return (
@@ -122,7 +122,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
               type="text"
               className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
               placeholder-gray-200::placeholder placeholder-opacity-75
-              border focus:border-[#0D60D8] text-lg"
+              border focus:border-[#0D60D8] text-xl"
               placeholder="Enter your first name"
               onChange={(e) => setFirstName(e.target.value)}
             />
@@ -134,7 +134,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
               type="text"
               className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
               placeholder-gray-200::placeholder placeholder-opacity-75
-              border focus:border-[#0D60D8] text-lg"
+              border focus:border-[#0D60D8] text-xl"
               placeholder="Enter your last name"
               onChange={(e) => setLastName(e.target.value)}
             />
@@ -146,7 +146,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
               type="email"
               className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
               placeholder-gray-200::placeholder placeholder-opacity-75
-              border focus:border-[#0D60D8] text-lg"
+              border focus:border-[#0D60D8] text-xl"
               placeholder="Enter your email"
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -158,7 +158,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
               type="tel"
               className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
               placeholder-gray-200::placeholder placeholder-opacity-75
-              border focus:border-[#0D60D8] text-lg"
+              border focus:border-[#0D60D8] text-xl"
               placeholder="Enter your phone number"
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
@@ -170,7 +170,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
               type="text"
               className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
               placeholder-gray-200::placeholder placeholder-opacity-75
-              border focus:border-[#0D60D8] text-lg"
+              border focus:border-[#0D60D8] text-xl"
               onChange={(e) => setRoomType(e.target.value)}
               value={roomType}
               readOnly
@@ -182,7 +182,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
             <select
               className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
               placeholder-gray-200::placeholder placeholder-opacity-75
-              border focus:border-[#0D60D8] text-lg"
+              border focus:border-[#0D60D8] text-xl"
               onChange={(e) => setNumberOfPerson(Number(e.target.value))}
             >
               {guestsOptions.map((option, index) => (
@@ -199,7 +199,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
               <DatePicker
                 className="lg:w-[240px] py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
                 placeholder-gray-200::placeholder placeholder-opacity-75
-                border focus:border-[#0D60D8] text-lg"
+                border focus:border-[#0D60D8] text-xl"
                 selected={checkInDate}
                 onChange={(date) => setCheckInDate(date as Date)}
               />
@@ -209,7 +209,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
               <DatePicker
                 className="lg:w-[240px] py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
                 placeholder-gray-200::placeholder placeholder-opacity-75
-                border focus:border-[#0D60D8] text-lg"
+                border focus:border-[#0D60D8] text-xl"
                 selected={checkOutDate}
                 onChange={(date) => setCheckOutDate(date as Date)}
               />

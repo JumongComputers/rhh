@@ -17,11 +17,11 @@ const AdminList: React.FC = () => {
   // Dummy data
   const bookings: AdminDashboard[] = Array.from({ length: 20 }, (_, index) => ({
     _id: `${index + 1}`,
-    firstName: `Type ${index + 1}`,
-    lastName: `Plate ${index + 1}`,
-    email: `Vehicle ${index + 1}`,
-    roomType: `Affiliation ${index + 1}`,
-    roomNum: `Color ${index + 1}`,
+    firstName: `Kelechi ${index + 1}`,
+    lastName: `Igwesi ${index + 1}`,
+    email: `user@gmail.com ${index + 1}`,
+    roomType: `deluxe ${index + 1}`,
+    roomNum: `1 ${index + 1}`,
     status: index % 3 === 0 ? "Pending" : index % 3 === 1 ? "Verified" : "Declined",
   }));
 
@@ -39,8 +39,8 @@ const AdminList: React.FC = () => {
   };
 
   return (
-    <div>
-      <div className="font-dm w-full md:bg-transparent ">
+    <div className="px-6">
+      <div className="font-dm w-full md:bg-transparent">
         <div className="flex justify-between items-center px-4 py-6 ">
           <SearchInput value={search} onChange={(e) => setSearch(e.target.value)} />
           <Nav />

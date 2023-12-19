@@ -9,14 +9,9 @@ interface SidebarItem {
 
 const sidebarData: SidebarItem[] = [
   {
-    title: "Dashboard",
+    title: "Booking",
     icon: React.createElement(icons.Home, {}),
     path: "/admin",
-  },
-  {
-    title: "Booking",
-    icon: React.createElement(icons.Barcode, {}),
-    path: "/admin/reports",
   },
   {
     title: "Site Admins",
