@@ -57,7 +57,7 @@ const AdminList: React.FC = () => {
               </div>
               <div>
                 <Link href="/admin/vehicles" className="text-[#0D60D8]  text-xl">
-                  <button className=" bg-white rounded-md px-6 py-2 font-bold border border-[#E0E0E0]">View all</button>
+                  <button className=" bg-white rounded-md px-6 py-2 font-bold border hidden border-[#E0E0E0]">View all</button>
                 </Link>
               </div>
             </div>
