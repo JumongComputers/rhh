@@ -8,6 +8,7 @@ import Nav from "./Nav";
 import SearchInput from "../SubAdmin/Search";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import StatusMenu from "../SubAdmin/StatusMenu";
+import ViewBookingModal from "../Modals/viewBookingModal";
 
 const AdminList: React.FC = () => {
   const [search, setSearch] = useState<string>("");
@@ -37,6 +38,10 @@ const AdminList: React.FC = () => {
   const handlePageClick = (selected: { selected: number }) => {
     setCurrentPage(selected.selected);
   };
+
+  const [showModal, setShowModal] = useState(false);
+  // view driver details with id
+  const [selectedBookingId, setSelectedBookingId] = useState("");
 
   return (
     <div className="px-6">
@@ -106,11 +111,31 @@ const AdminList: React.FC = () => {
                               )}
                               {status === "Pending" ? <StatusMenu id={_id} /> : null}
                             </td>
-                            <td className="py-3 px-12">{status}</td>
+                            <td className="py-3 px-12 ">
+                              <button
+                                onClick={() => {
+                                  setSelectedBookingId(_id);
+                                  setShowModal(true);
+                                }}
+                                className="font-normal px-2 text-black"
+                              >
+                                View Booking
+                              </button>
+                            </td>
                           </tr>
                         );
                       })}
                   </tbody>
+                  {selectedBookingId && (
+                    <ViewBookingModal
+                      id={selectedBookingId ? selectedBookingId.toString() : ""}
+                      visible={showModal}
+                      onClose={() => {
+                        setSelectedBookingId("");
+                        setShowModal(false);
+                      }}
+                    />
+                  )}
                 </table>
               )}
             </div>
