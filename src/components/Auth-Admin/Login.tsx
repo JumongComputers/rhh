@@ -25,10 +25,13 @@ const Login: React.FC = () => {
     validationSchema,
     onSubmit: async (values) => {
       try {
-        await dispatch(userLogin(values) as any);
+        const response = await dispatch(userLogin(values) as any);
 
-        if (!isLoading) {
+        // Check if the response status is "success" before navigating
+        if (response.payload.status === "success") {
           router.push("/admin");
+        } else {
+          console.error("Login failed:", response.payload.message);
         }
       } catch (error) {
         console.error("Login error:", error);
