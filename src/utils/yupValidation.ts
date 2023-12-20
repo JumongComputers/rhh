@@ -17,5 +17,5 @@ export const adminValidationSchema = Yup.object().shape({
   lastName: Yup.string().required("Last name is required"),
   email: Yup.string().email("Invalid email").required("Email is required"),
   password: Yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
-  phoneNumber: Yup.number().typeError("Phone number must be a number").required("Phone number is required"),
+  phoneNumber: Yup.number().required("Phone number is required"),
 });
