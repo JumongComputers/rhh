@@ -57,7 +57,7 @@ const Login: React.FC = () => {
       <div className="flex flex-col inset-0 absolute items-center h-screen lg:justify-center w-full md:px-20 flex-1 md:py-20">
         <div className="bg-white h-screen rounded-lg flex lg:max-w-4xl w-full max-w-full">
           <div className=" w-full px-5 md:px-8 py-8 md:py-20">
-            <div className="flex justify-start pb-20 items-center gap-6">
+            <div className="flex justify-start pb-20 items-center gap-6 text-4xl">
               <Link href="/">
                 <MoveLeft />
               </Link>
@@ -66,11 +66,11 @@ const Login: React.FC = () => {
             <h1 className="text-[#19202C] font-bold text-6xl">
               Sign in to <span className="text-[#0D60D8]"> Rise High Hotel</span>
             </h1>
-            <p className="mt-4 text-[#676869] font-normal text-lg">Enter your login details below.</p>
+            <p className="mt-4 text-[#676869] font-normal text-2xl">Enter your login details below.</p>
 
             <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
               <div className="flex flex-col mt-12">
-                <label htmlFor="email" className="text-[#19202C] text-lg mb-2">
+                <label htmlFor="email" className="text-[#19202C] text-2xl mb-2">
                   Email or Phone
                 </label>
                 <input
@@ -83,13 +83,13 @@ const Login: React.FC = () => {
                   onBlur={formik.handleBlur}
                   className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
               placeholder-gray-200::placeholder placeholder-opacity-75
-              border focus:border-[#0D60D8]"
+              border focus:border-[#0D60D8] text-xl"
                   placeholder="Enter your email or phone number"
                 />
                 {formik.touched.email && formik.errors.email && <span className="text-red-500">{formik.errors.email}</span>}
               </div>
               <div className="flex flex-col w-full">
-                <label htmlFor="password" className="text-[#19202C] text-lg mb-2">
+                <label htmlFor="password" className="text-[#19202C] text-2xl mb-2">
                   Password
                 </label>
                 <div className="relative">
@@ -103,7 +103,7 @@ const Login: React.FC = () => {
                     onBlur={formik.handleBlur}
                     className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
                     placeholder-gray-200::placeholder placeholder-opacity-75
-                    border focus:border-[#0D60D8]"
+                    border focus:border-[#0D60D8] text-xl"
                     placeholder="Enter your password"
                   />
                   <div className="absolute cursor-pointer top-1/2 right-3 -translate-y-1/2 text-[#828282]">
@@ -113,7 +113,7 @@ const Login: React.FC = () => {
                 {formik.touched.password && formik.errors.password && <span className="text-red-500">{formik.errors.password}</span>}
               </div>
 
-              <Link href="/auth/forgotPassword" className="text-black font-normal text-base md:text-lg">
+              <Link href="/auth/forgotPassword" className="text-black font-normal text-lg md:text-2xl">
                 Forgot Password?
               </Link>
 
@@ -121,7 +121,7 @@ const Login: React.FC = () => {
                 type="submit"
                 disabled={isLoading === "pending"}
                 className="lg:w-full bg-[#0D60D8] py-4 text-white rounded-md
-              font-bold text-lg focus:outline-none w-full mt-6"
+              font-bold text-2xl focus:outline-none w-full mt-6"
               >
                 {isLoading === "pending" ? "Loading..." : "Login"}
               </button>

@@ -21,10 +21,11 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
       lastName: "",
       email: "",
       password: "",
-      phoneNum: 0,
+      phoneNumber: "",
     },
     validationSchema: adminValidationSchema,
     onSubmit: (values) => {
+      console.log("Form submitted with values:", values);
       // Handle  form submission logic here, e.g., API calls
       dispatch(addAdmin(values as AddAdminTypes) as any);
       //   onClose();
@@ -32,7 +33,7 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
   });
 
   const { values, handleChange, handleSubmit, errors, touched } = formik;
-  const { role, firstName, lastName, email, password, phoneNum } = values;
+  const { role, firstName, lastName, email, password, phoneNumber } = values;
 
   // show password toggle
   const [open, setOpen] = useState(false);
@@ -44,10 +45,9 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
 
   const options = [
     { value: "", label: "Select admin type" },
-    { value: "Super admin", label: "Super admin" },
-    { value: "Dashboard Manager", label: "Dashboard Manager" },
-    { value: "Mobile App manager", label: "Mobile App manager" },
-    { value: "Web app manager", label: "Web app manager" },
+    { value: "receptionist", label: "Receptionist" },
+    { value: "supervisor", label: "Supervisor" },
+    { value: "manager", label: "Manager" },
   ];
 
   if (!visible) return null;
@@ -76,13 +76,13 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                   <span className="text-[#19202C] text-4xl font-bold">Add Admin</span>
                   <div className="w-full grid gap-4 lg:gap-6 mb-6 mt-12 ">
                     <div className="flex flex-col w-full">
-                      <label htmlFor="role" className="text-[#19202C] text-xl mb-2">
+                      <label htmlFor="role" className="text-[#19202C] text-2xl mb-2">
                         Admin type
                       </label>
                       <div className="relative inline-block">
                         <select
                           className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
-                          block appearance-none border-2 focus:border-[#0D60D8]"
+                          block appearance-none border-2 text-xl focus:border-[#0D60D8]"
                           value={role}
                           onChange={handleChange}
                           name="role"
@@ -100,7 +100,7 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                       {errors.role && touched.role && <div className="text-red-500">{errors.role}</div>}
                     </div>
                     <div className="flex flex-col">
-                      <label htmlFor="firstname" className="text-[#19202C] text-xl mb-2">
+                      <label htmlFor="firstname" className="text-[#19202C] text-2xl mb-2">
                         First name
                       </label>
                       <input
@@ -110,13 +110,13 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                         type="text"
                         className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
                           placeholder-gray-200::placeholder placeholder-opacity-75
-                          border-2 focus:border-[#0D60D8]"
+                          border-2 focus:border-[#0D60D8] text-xl"
                         placeholder="Enter first name"
                       />
                       {errors.firstName && touched.firstName && <div className="text-red-500">{errors.firstName}</div>}
                     </div>
                     <div className="flex flex-col w-full">
-                      <label htmlFor="lastname" className="text-[#19202C] text-xl mb-2">
+                      <label htmlFor="lastname" className="text-[#19202C] text-2xl mb-2">
                         Last name
                       </label>
                       <input
@@ -126,13 +126,13 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                         type="text"
                         className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
                           placeholder-gray-200::placeholder placeholder-opacity-75
-                          border-2 focus:border-[#0D60D8]"
+                          border-2 focus:border-[#0D60D8] text-xl"
                         placeholder="Enter last name"
                       />
                       {errors.lastName && touched.lastName && <div className="text-red-500">{errors.lastName}</div>}
                     </div>
                     <div className="flex flex-col w-full">
-                      <label htmlFor="email" className="text-[#19202C] text-xl mb-2">
+                      <label htmlFor="email" className="text-[#19202C] text-2xl mb-2">
                         Email
                       </label>
                       <input
@@ -142,13 +142,13 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                         type="text"
                         className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
                           placeholder-gray-200::placeholder placeholder-opacity-75
-                          border-2 focus:border-[#0D60D8]"
+                          border-2 focus:border-[#0D60D8] text-xl"
                         placeholder="Enter email"
                       />
                       {errors.email && touched.email && <div className="text-red-500">{errors.email}</div>}
                     </div>
                     <div className="flex flex-col w-full">
-                      <label htmlFor="password" className="text-[#19202C] text-xl mb-2">
+                      <label htmlFor="password" className="text-[#19202C] text-2xl mb-2">
                         Password
                       </label>
                       <div className="relative">
@@ -160,7 +160,7 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                           onChange={handleChange}
                           className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
                             placeholder-gray-200::placeholder placeholder-opacity-75
-                            border-2 focus:border-[#0D60D8]"
+                            border-2 focus:border-[#0D60D8] text-xl"
                           placeholder="Enter your password"
                         />
                         <div className="absolute cursor-pointer top-1/2 right-3 -translate-y-1/2 text-[#828282]">
@@ -170,33 +170,33 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                       {errors.password && touched.password && <div className="text-red-500">{errors.password}</div>}
                     </div>
                     <div className="flex flex-col w-full">
-                      <label htmlFor="phoneNum" className="text-[#19202C] text-xl mb-2">
+                      <label htmlFor="phoneNumber" className="text-[#19202C] text-2xl mb-2">
                         Phone number
                       </label>
                       <input
-                        name="phoneNum"
-                        value={phoneNum}
+                        name="phoneNumber"
+                        value={phoneNumber}
                         onChange={handleChange}
                         type="number"
                         className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
                           placeholder-gray-200::placeholder placeholder-opacity-75
-                          border-2 focus:border-[#0D60D8]"
+                          border-2 focus:border-[#0D60D8] text-xl"
                         placeholder="Enter phone number"
                       />
-                      {errors.phoneNum && touched.phoneNum && <div className="text-red-500">{errors.phoneNum}</div>}
+                      {errors.phoneNumber && touched.phoneNumber && <div className="text-red-500">{errors.phoneNumber}</div>}
                     </div>
                     <div className="flex justify-between items-center pt-8 ">
                       <button
                         onClick={() => onClose()}
                         className="border border-[#0D60D8] py-4 text-[#0D60D8] rounded-md
-                          font-bold text-xl focus:outline-none px-12 bg-white"
+                          font-bold text-2xl focus:outline-none px-12 bg-white"
                       >
                         Cancel
                       </button>
                       <button
                         type="submit"
                         className="bg-[#0D60D8] py-4 text-white rounded-md
-                          font-bold text-xl px-6 focus:outline-none"
+                          font-bold text-2xl px-6 focus:outline-none"
                       >
                         Add Admin
                       </button>

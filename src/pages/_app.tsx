@@ -2,6 +2,7 @@ import AdminSidebar from "@/components/AdminDashboard/AdminSidebar/AdminSidebar"
 import AdminLayout from "@/components/Layouts/AdminLayout";
 import LayoutWrapper from "@/components/Layouts/LayoutWrapper";
 import "@/styles/globals.css";
+import axios from "axios";
 import { NextComponentType } from "next";
 import type { AppProps } from "next/app";
 
@@ -16,6 +17,13 @@ export default function App({ Component, pageProps }: AppProps) {
 
   // Check if the component is an auth page
   const isAdminAuth = (Component as ExtendedNextComponentType).authAdmin;
+
+  let accessToken: any;
+  if (typeof window !== "undefined") {
+    accessToken = localStorage.getItem("accessToken");
+  }
+
+  axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
 
   return (
     <div>
