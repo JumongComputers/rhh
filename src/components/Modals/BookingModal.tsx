@@ -17,7 +17,7 @@ interface BookingModalProps {
 
 const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, price, roomTypeDefault }) => {
   const [checkInDate, setCheckInDate] = useState<Date | null>(new Date());
-  const [checkOutDate, setCheckOutDate] = useState<Date | null>(new Date());
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -26,6 +26,12 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
   const [numberOfPerson, setNumberOfPerson] = useState(1);
 
   const dispatch = useDispatch();
+
+  // Set default check-out date to be one day greater than the default check-in date
+  const defaultCheckoutDate = new Date(checkInDate || new Date());
+  defaultCheckoutDate.setDate(defaultCheckoutDate.getDate() + 1);
+
+  const [checkOutDate, setCheckOutDate] = useState<Date | null>(new Date(defaultCheckoutDate));
 
   const guestsOptions = ["1 Guest", "2 Guests", "3 Guests", "4 Guests"];
 
@@ -109,6 +115,25 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
 
     // Return a default value if either checkInDate or checkOutDate is undefined
     return 0;
+  };
+
+  const isCheckoutValid = () => {
+    // Check if checkOutDate is greater than checkInDate
+    return checkOutDate && checkInDate && checkOutDate > checkInDate;
+  };
+
+  const isFormValid = () => {
+    // Check if all input fields are filled and checkout date is greater than check-in date
+    return (
+      firstName.trim() !== "" &&
+      lastName.trim() !== "" &&
+      email.trim() !== "" &&
+      phoneNumber.trim() !== "" &&
+      roomType.trim() !== "" &&
+      checkInDate !== null &&
+      checkOutDate !== null &&
+      checkOutDate > checkInDate
+    );
   };
 
   const config = {
@@ -224,18 +249,32 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
             <div className="flex-1">
               <label className="block text-2xl font-medium text-gray-700">Check-Out</label>
               <DatePicker
-                className="lg:w-[240px] py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
+                className={`lg:w-[240px] py-4 px-6 rounded-md 
+                ${isCheckoutValid() ? "bg-[#F2F7FF]" : "border-red-500 bg-[#FEE2E2]"}
+                focus:outline-none w-full
                 placeholder-gray-200::placeholder placeholder-opacity-75
-                border focus:border-[#0D60D8] text-xl"
+                border focus:border-[#0D60D8] text-xl`}
                 selected={checkOutDate}
                 onChange={(date) => setCheckOutDate(date as Date)}
               />
+              {!isCheckoutValid() && <p className="text-red-500 text-lg">Check-out date must be greater than check-in date</p>}
             </div>
           </div>
 
           {/* Payment section */}
-          <div className="flex justify-center mt-6 bg-blue-500 text-white px-4 py-2 w-full rounded-md font-medium text-2xl">
-            <PaystackButton {...config} onSuccess={(response) => handlePaymentSuccess(response)} onClose={() => console.log("Payment closed")} />
+          <div className="flex justify-center mt-6">
+            {isFormValid() ? (
+              <PaystackButton
+                {...config}
+                onSuccess={(response) => handlePaymentSuccess(response)}
+                onClose={() => console.log("Payment closed")}
+                className="bg-blue-500 text-white px-4 py-2 w-full rounded-md font-medium text-2xl"
+              />
+            ) : (
+              <button disabled className="cursor-not-allowed w-full bg-gray-400 text-white px-4 py-2 rounded-md font-medium text-2xl">
+                Complete Booking
+              </button>
+            )}
           </div>
         </div>
       </div>

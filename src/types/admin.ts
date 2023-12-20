@@ -14,5 +14,5 @@ export interface AddAdminTypes {
   lastName: string;
   email: string;
   password: string;
-  phoneNum: number;
+  phoneNumber: string;
 }
