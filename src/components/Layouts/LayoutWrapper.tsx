@@ -1,6 +1,8 @@
 import React, { ReactNode } from "react";
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header";
+import { Provider } from "react-redux";
+import { store } from "@/redux/store/store";
 
 interface LayoutWrapperProps {
   children: ReactNode;
@@ -9,9 +11,11 @@ interface LayoutWrapperProps {
 const LayoutWrapper: React.FC<LayoutWrapperProps> = ({ children }) => {
   return (
     <div className="bg-white font-roboto">
-      <Header />
-      {children}
-      <Footer />
+      <Provider store={store}>
+        <Header />
+        {children}
+        <Footer />
+      </Provider>
     </div>
   );
 };

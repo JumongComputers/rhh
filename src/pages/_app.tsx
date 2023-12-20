@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
       {isAdmin ? (
         <AdminLayout>
           <AdminSidebar>
-            <div className="bg-gray-100">
+            <div className="bg-gray-100 min-h-screen">
               <Component {...pageProps} />
             </div>
           </AdminSidebar>

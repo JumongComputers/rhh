@@ -34,7 +34,7 @@ const BookingCard: React.FC<BookingCardProps> = ({ data }) => {
       <span className="text-[#282d3c] font-normal text-xl">{data.numOfRooms}</span>
       <span className="text-[#282d3c] font-normal h-[9rem] text-xl md:text-4xl lg:text-xl">{data.text}</span>
       <div className="flex gap-1 items-center text-5xl">
-        <span className="text-[#282d3c] font-bold text-5xl">{data.price}</span>
+        <span className="text-[#282d3c] font-bold text-5xl">₦{data.price}.00</span>
         <span className="text-[#282d3c] font-bold text-2xl text-opacity-25">/ per night</span>
       </div>
 
@@ -43,7 +43,7 @@ const BookingCard: React.FC<BookingCardProps> = ({ data }) => {
       </button>
 
       {/* Modal */}
-      <BookingModal isOpen={isModalOpen} onRequestClose={closeModal} />
+      <BookingModal isOpen={isModalOpen} onRequestClose={closeModal} price={Number(data.price)} roomTypeDefault={data.name} />
     </div>
   );
 };
