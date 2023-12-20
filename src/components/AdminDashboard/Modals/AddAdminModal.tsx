@@ -1,7 +1,5 @@
 import { ChevronDown, Eye, EyeOff } from "lucide-react";
 import React, { useState } from "react";
-import { useFormik } from "formik";
-import { adminValidationSchema } from "@/utils/yupValidation";
 import { useDispatch } from "react-redux";
 import { addAdmin } from "@/redux/slices/adminSlice";
 import { AddAdminTypes } from "@/types/admin";
@@ -14,33 +12,40 @@ interface AddAdminModalProps {
 const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
   const dispatch = useDispatch();
 
-  const formik = useFormik({
-    initialValues: {
-      role: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      phoneNumber: "",
-    },
-    validationSchema: adminValidationSchema,
-    onSubmit: (values) => {
-      console.log("Form submitted with values:", values);
-      // Handle  form submission logic here, e.g., API calls
-      dispatch(addAdmin(values as AddAdminTypes) as any);
-      //   onClose();
-    },
+  const [formData, setFormData] = useState({
+    role: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    phoneNumber: "",
   });
 
-  const { values, handleChange, handleSubmit, errors, touched } = formik;
-  const { role, firstName, lastName, email, password, phoneNumber } = values;
-
-  // show password toggle
   const [open, setOpen] = useState(false);
 
-  // handle toggle
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
   const toggle = () => {
     setOpen(!open);
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    console.log("Form submitted with values:", formData);
+
+    dispatch(addAdmin(formData as AddAdminTypes) as any);
+  };
+
+  if (!visible) return null;
+
+  const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
+    if ((e.target as HTMLElement).id === "container") onClose();
   };
 
   const options = [
@@ -49,12 +54,6 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
     { value: "supervisor", label: "Supervisor" },
     { value: "manager", label: "Manager" },
   ];
-
-  if (!visible) return null;
-
-  const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
-    if ((e.target as HTMLElement).id === "container") onClose();
-  };
 
   return (
     <>
@@ -70,9 +69,9 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
             </button>
           </div>
           <div className="overflow-y-auto max-h-[520px]">
-            <div className="flex flex-col px-6  items-start w-full">
+            <div className="flex flex-col px-6 items-start w-full">
               <div className="flex flex-col items-start lg:place-items-start w-full md:py-8 ">
-                <form onSubmit={handleSubmit} className="flex flex-col text-start w-full mb-6 lg:mb-0  pb-8">
+                <form className="flex flex-col text-start w-full mb-6 lg:mb-0 pb-8">
                   <span className="text-[#19202C] text-4xl font-bold">Add Admin</span>
                   <div className="w-full grid gap-4 lg:gap-6 mb-6 mt-12 ">
                     <div className="flex flex-col w-full">
@@ -83,7 +82,7 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                         <select
                           className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
                           block appearance-none border-2 text-xl focus:border-[#0D60D8]"
-                          value={role}
+                          value={formData.role}
                           onChange={handleChange}
                           name="role"
                         >
@@ -97,7 +96,6 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                           <ChevronDown />
                         </div>
                       </div>
-                      {errors.role && touched.role && <div className="text-red-500">{errors.role}</div>}
                     </div>
                     <div className="flex flex-col">
                       <label htmlFor="firstname" className="text-[#19202C] text-2xl mb-2">
@@ -105,7 +103,7 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                       </label>
                       <input
                         name="firstName"
-                        value={firstName}
+                        value={formData.firstName}
                         onChange={handleChange}
                         type="text"
                         className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
@@ -113,7 +111,6 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                           border-2 focus:border-[#0D60D8] text-xl"
                         placeholder="Enter first name"
                       />
-                      {errors.firstName && touched.firstName && <div className="text-red-500">{errors.firstName}</div>}
                     </div>
                     <div className="flex flex-col w-full">
                       <label htmlFor="lastname" className="text-[#19202C] text-2xl mb-2">
@@ -121,7 +118,7 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                       </label>
                       <input
                         name="lastName"
-                        value={lastName}
+                        value={formData.lastName}
                         onChange={handleChange}
                         type="text"
                         className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
@@ -129,7 +126,6 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                           border-2 focus:border-[#0D60D8] text-xl"
                         placeholder="Enter last name"
                       />
-                      {errors.lastName && touched.lastName && <div className="text-red-500">{errors.lastName}</div>}
                     </div>
                     <div className="flex flex-col w-full">
                       <label htmlFor="email" className="text-[#19202C] text-2xl mb-2">
@@ -137,7 +133,7 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                       </label>
                       <input
                         name="email"
-                        value={email}
+                        value={formData.email}
                         onChange={handleChange}
                         type="text"
                         className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
@@ -145,7 +141,6 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                           border-2 focus:border-[#0D60D8] text-xl"
                         placeholder="Enter email"
                       />
-                      {errors.email && touched.email && <div className="text-red-500">{errors.email}</div>}
                     </div>
                     <div className="flex flex-col w-full">
                       <label htmlFor="password" className="text-[#19202C] text-2xl mb-2">
@@ -156,7 +151,7 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                           name="password"
                           type={open === false ? "password" : "text"}
                           required
-                          value={password}
+                          value={formData.password}
                           onChange={handleChange}
                           className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
                             placeholder-gray-200::placeholder placeholder-opacity-75
@@ -167,7 +162,6 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                           {open === false ? <Eye onClick={toggle} width={20} height={20} /> : <EyeOff onClick={toggle} width={20} height={20} />}
                         </div>
                       </div>
-                      {errors.password && touched.password && <div className="text-red-500">{errors.password}</div>}
                     </div>
                     <div className="flex flex-col w-full">
                       <label htmlFor="phoneNumber" className="text-[#19202C] text-2xl mb-2">
@@ -175,7 +169,7 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                       </label>
                       <input
                         name="phoneNumber"
-                        value={phoneNumber}
+                        value={formData.phoneNumber}
                         onChange={handleChange}
                         type="number"
                         className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
@@ -183,24 +177,21 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                           border-2 focus:border-[#0D60D8] text-xl"
                         placeholder="Enter phone number"
                       />
-                      {errors.phoneNumber && touched.phoneNumber && <div className="text-red-500">{errors.phoneNumber}</div>}
                     </div>
-                    <div className="flex justify-between items-center pt-8 ">
-                      <button
-                        onClick={() => onClose()}
-                        className="border border-[#0D60D8] py-4 text-[#0D60D8] rounded-md
-                          font-bold text-2xl focus:outline-none px-12 bg-white"
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        type="submit"
-                        className="bg-[#0D60D8] py-4 text-white rounded-md
-                          font-bold text-2xl px-6 focus:outline-none"
-                      >
-                        Add Admin
-                      </button>
-                    </div>
+                  </div>
+                  <div className="flex justify-between items-center pt-8">
+                    <button
+                      onClick={() => onClose()}
+                      className="border border-[#0D60D8] py-4 text-[#0D60D8] rounded-md font-bold text-2xl focus:outline-none px-12 bg-white"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={handleSubmit} // Use the custom submit function
+                      className="bg-[#0D60D8] py-4 text-white rounded-md font-bold text-2xl px-6 focus:outline-none"
+                    >
+                      Add Admin
+                    </button>
                   </div>
                 </form>
               </div>
