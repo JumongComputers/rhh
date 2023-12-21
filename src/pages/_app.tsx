@@ -5,6 +5,8 @@ import "@/styles/globals.css";
 import axios from "axios";
 import { NextComponentType } from "next";
 import type { AppProps } from "next/app";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Define a type that extends NextComponentType
 type ExtendedNextComponentType<P = {}> = NextComponentType & {
@@ -25,6 +27,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
   axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
 
+  // toast("This is a custom toast Notification!", {
+  //   position: toast.POSITION.TOP_CENTER,
+  //   className: "toast-message",
+  // });
+
   return (
     <div>
       {isAdmin ? (
@@ -32,6 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <AdminSidebar>
             <div className="bg-gray-100 min-h-screen">
               <Component {...pageProps} />
+              <ToastContainer />
             </div>
           </AdminSidebar>
         </AdminLayout>
@@ -39,11 +47,13 @@ export default function App({ Component, pageProps }: AppProps) {
         <AdminLayout>
           <div className="lg:bg-[#0D60D8]  h-screen">
             <Component {...pageProps} />
+            <ToastContainer />
           </div>
         </AdminLayout>
       ) : (
         <LayoutWrapper>
           <Component {...pageProps} />
+          <ToastContainer />
         </LayoutWrapper>
       )}
     </div>

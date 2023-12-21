@@ -37,29 +37,25 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
 
   const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY || "";
 
-  const [paymentData, setPaymentData] = useState({
-    amountPaid: 0,
-    paymentStatus: "",
-    paymentRef: "",
-    tranxId: "",
-  });
-
-  const handleBookingSubmission = () => {
+  const handleBookingSubmission = (bookingData: any) => {
     const bookingFormData = {
       firstName,
       lastName,
       email,
       phoneNumber,
-      checkIn: checkInDate?.toISOString().split("T")[0] || "", // Convert Date to ISO string
-      checkOut: checkOutDate?.toISOString().split("T")[0] || "", // Convert Date to ISO string
+      checkIn: checkInDate?.toISOString().split("T")[0] || "",
+      checkOut: checkOutDate?.toISOString().split("T")[0] || "",
       roomType,
       numberOfPerson,
-      ...paymentData,
+      amountPaid: bookingData.amount,
+      paymentStatus: bookingData.status,
+      paymentRef: bookingData.transRef,
+      tranxId: String(bookingData.transId),
     };
 
     dispatch(createBooking({ ...bookingFormData }) as any);
 
-    onRequestClose();
+    // onRequestClose();
   };
 
   const handlePaymentSuccess = async (response: any) => {
@@ -76,24 +72,13 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
           console.log("Payment verification successful:", verificationResponse);
 
           const { amount, status, transRef, transId } = verificationResponse.data.data;
-          console.log("ref:", transRef);
-          // callback function in setPaymentData to ensure the state is updated before proceeding
-          setPaymentData((prevPaymentData) => ({
-            ...prevPaymentData,
-            amountPaid: amount / 100,
-            paymentStatus: status,
-            paymentRef: transRef,
-            tranxId: String(transId),
-          }));
 
-          handleBookingSubmission();
+          handleBookingSubmission({ amount, status, transRef, transId });
         } else {
           console.log("Payment verification failed:", verificationResponse);
         }
       } catch (error) {
         console.error("Error during payment verification:", error);
-
-        // Optionally, you may want to reset the form or take other actions
       }
     } else {
       console.log("Payment failed:", response);
@@ -109,7 +94,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
       const numberOfDays = Math.ceil(totalHours / hoursInDay);
 
       // Include the number of guests in the calculation
-      const totalAmount = numberOfDays * price * numberOfPerson;
+      const totalAmount = numberOfDays * price;
       return totalAmount * 100; // Convert to kobo
     }
 
@@ -159,9 +144,12 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
         <div className="bg-white p-4 flex flex-col gap-4">
           {/* Your form inputs */}
           <div className="mb-4">
-            <label className="block text-2xl font-medium text-gray-700">First Name</label>
+            <label htmlFor="firstName" className="block text-2xl font-medium text-gray-700">
+              First Name
+            </label>
             <input
               type="text"
+              name="firstName"
               className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
               placeholder-gray-200::placeholder placeholder-opacity-75
               border focus:border-[#0D60D8] text-xl"
@@ -171,9 +159,12 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
           </div>
 
           <div className="mb-4">
-            <label className="block text-2xl font-medium text-gray-700">Last Name</label>
+            <label htmlFor="lastName" className="block text-2xl font-medium text-gray-700">
+              Last Name
+            </label>
             <input
               type="text"
+              name="lastName"
               className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
               placeholder-gray-200::placeholder placeholder-opacity-75
               border focus:border-[#0D60D8] text-xl"
@@ -183,9 +174,12 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
           </div>
 
           <div className="mb-4">
-            <label className="block text-2xl font-medium text-gray-700">Email</label>
+            <label htmlFor="email" className="block text-2xl font-medium text-gray-700">
+              Email
+            </label>
             <input
               type="email"
+              name="email"
               className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
               placeholder-gray-200::placeholder placeholder-opacity-75
               border focus:border-[#0D60D8] text-xl"
@@ -195,9 +189,12 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
           </div>
 
           <div className="mb-4">
-            <label className="block text-2xl font-medium text-gray-700">Phone Number</label>
+            <label htmlFor="phoneNumber" className="block text-2xl font-medium text-gray-700">
+              Phone Number
+            </label>
             <input
               type="tel"
+              name="phoneNumber"
               className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
               placeholder-gray-200::placeholder placeholder-opacity-75
               border focus:border-[#0D60D8] text-xl"
@@ -207,9 +204,12 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
           </div>
 
           <div className="mb-4">
-            <label className="block text-2xl font-medium text-gray-700">Room Type</label>
+            <label htmlFor="roomType" className="block text-2xl font-medium text-gray-700">
+              Room Type
+            </label>
             <input
               type="text"
+              name="roomType"
               className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
               placeholder-gray-200::placeholder placeholder-opacity-75
               border focus:border-[#0D60D8] text-xl"
@@ -220,12 +220,15 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onRequestClose, pri
           </div>
 
           <div className="mb-4">
-            <label className="block text-2xl font-medium text-gray-700">Guests</label>
+            <label htmlFor="guests" className="block text-2xl font-medium text-gray-700">
+              Guests
+            </label>
             <select
               className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
               placeholder-gray-200::placeholder placeholder-opacity-75
               border focus:border-[#0D60D8] text-xl"
               onChange={(e) => setNumberOfPerson(Number(e.target.value))}
+              name="guests"
             >
               {guestsOptions.map((option, index) => (
                 <option key={index} value={index + 1}>
