@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "@/redux/slices/authSlice";
+import { toast } from "react-toastify";
 
 const Login: React.FC = () => {
   const router = useRouter();
@@ -29,8 +30,10 @@ const Login: React.FC = () => {
 
         // Check if the response status is "success" before navigating
         if (response.payload.status === "success") {
+          toast.success("Login good");
           router.push("/admin");
         } else {
+          toast.error("failed");
           console.error("Login failed:", response.payload.message);
         }
       } catch (error) {

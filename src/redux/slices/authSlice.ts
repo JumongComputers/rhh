@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "../services/authService";
 import { LoginTypes } from "@/types/auth";
+import { toast } from "react-toastify";
 
 export interface AuthState {
   user: any;
@@ -42,6 +43,7 @@ export const authSlice = createSlice({
       })
       .addCase(userLogin.rejected, (state, action) => {
         state.loading = "failed";
+        toast.error(action.error.message);
         state.error = action.error.message || null;
       });
   },
