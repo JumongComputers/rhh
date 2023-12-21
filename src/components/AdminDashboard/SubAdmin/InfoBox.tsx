@@ -1,15 +1,13 @@
-import Link from "next/link";
 import React, { ReactNode } from "react";
 
 interface InfoBoxProps {
   title: string;
-  url: string;
   count: number;
   icon: ReactNode;
   // text: ReactNode;
 }
 
-const InfoBox: React.FC<InfoBoxProps> = ({ title, url, count, icon }) => {
+const InfoBox: React.FC<InfoBoxProps> = ({ title, count, icon }) => {
   return (
     <div
       style={{
@@ -18,15 +16,13 @@ const InfoBox: React.FC<InfoBoxProps> = ({ title, url, count, icon }) => {
       }}
       className="bg-white w-full  translate-y-0 rounded-xl"
     >
-      <Link href={url}>
-        <div className="p-5">
-          <span>{icon}</span>
-          <span className="font-bold text-[#828282] font-[DM Sans] text-3xl">{title}</span>
-          <div className="flex justify-between items-center mt-2">
-            <span className="font-bold text-[#19202C] font-[DM Sans] text-4xl">{count}</span>
-          </div>
+      <div className="p-5">
+        <span>{icon}</span>
+        <span className="font-bold text-[#828282] font-[DM Sans] text-3xl">{title}</span>
+        <div className="flex justify-between items-center mt-2">
+          <span className="font-bold text-[#19202C] font-[DM Sans] text-4xl">{count}</span>
         </div>
-      </Link>
+      </div>
     </div>
   );
 };
