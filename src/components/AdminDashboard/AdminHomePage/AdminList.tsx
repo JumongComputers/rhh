@@ -1,18 +1,14 @@
-import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
-import { AdminDashboard } from "@/types/admin";
 import HomeHeader from "./HomeHeader";
 import Overview from "./Overview";
 import Nav from "./Nav";
 import SearchInput from "../SubAdmin/Search";
 import { ChevronLeft, ChevronRight, Eye, MoveLeft } from "lucide-react";
-import StatusMenu from "../SubAdmin/StatusMenu";
 import ViewBookingModal from "../Modals/viewBookingModal";
 import { BookingTypes } from "@/types/booking";
 import axios from "axios";
 import { baseApi } from "@/redux/services/authService";
-import DeleteUserModal from "../Modals/DeleteUserModal";
 import DeleteBookingModal from "../Modals/DeleteBooking";
 
 interface BookingTableProps {
@@ -46,7 +42,6 @@ const AdminList: React.FC<BookingTableProps> = ({ bookings }) => {
       console.log("pageData:", response);
       // const data = await response.data;
 
-      // Append the new data to the existing assessments
       setBookingPage(response.data.data.data.booking);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -73,13 +68,12 @@ const AdminList: React.FC<BookingTableProps> = ({ bookings }) => {
 
   const [showModal, setShowModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  // view driver details with id
+
   const [selectedBookingId, setSelectedBookingId] = useState("");
 
   return (
     <div className="px-6">
       {showForm ? (
-        // Render the form content here
         <div className="bg-white p-8 rounded-md my-20">
           <button onClick={() => setShowForm(false)} className="mb-4 flex items-center gap-4 text-blue-500 text-4xl cursor-pointer">
             <MoveLeft /> Back
@@ -136,7 +130,7 @@ const AdminList: React.FC<BookingTableProps> = ({ bookings }) => {
             <button
               className="bg-red-500 text-white text-4xl py-2 px-4 rounded-md mt-4"
               onClick={() => {
-                // Handle update status logic here
+                // Handle delete logic here
               }}
             >
               Delete
