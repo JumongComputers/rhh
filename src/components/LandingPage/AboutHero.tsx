@@ -20,10 +20,8 @@ const AboutHero: React.FC = () => {
         <div className="border border-opacity-25 border-blue-400 w-20 mt-6" />
         <p className="text-[#758585] font-normal mt-4 text-2xl text-justify">
           At Rise High Hotel, we redefine hospitality by offering an experience that goes beyond a mere stay. Nestled in the heart of Abeokuta, Ogun State, Nigeria, our hotel stands as a testament to comfort, luxury, and impeccable service.
-          We offer accommodation with a restaurant serving the finest local and international cuisines, free private parking, a fitness centre and a dedicated bar.</p>
-          <p className="text-[#758585] font-normal mt-4 text-2xl text-justify">Hospitality is not just a service but a promise we uphold diligently. We prioritize your comfort, security, and satisfaction above all else. Every interaction with our staff echoes our commitment to personalized service and attention to detail.
-          We look forward to welcoming you and creating lasting memories together.
-        </p>
+          We offer accommodation with a restaurant serving the finest local and international cuisines, free private parking, a fitness centre and a dedicated bar. Hospitality is not just a service but a promise we uphold diligently. We look forward to welcoming you and creating lasting memories together.</p>
+        
         <button className="bg-blue-800 rounded-md mt-4  px-6 py-4 text-white text-2xl" type="button">
           <Link href='#rooms'><span>Room Info</span></Link>
         </button>

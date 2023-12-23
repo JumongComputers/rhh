@@ -28,7 +28,7 @@ const BookRooms: React.FC = () => {
       >
         <div className="flex flex-col gap-2 lg:justify-center lg:items-center px-8 lg:px-[8vw]  text-center">
           <h1 className="lg:text-8xl text-6xl font-bold">Our Rooms</h1>
-          <p className="font-normal max-w-6xl text-base md:text-2xl opacity-70">
+          <p className="font-normal max-w-6xl text-lg md:text-2xl opacity-70">
             We believe in crafting more than just a temporary escape. Every corner of our hotel is designed to immerse you in a world of sophistication and comfort. Whether you&apos;re here for business or leisure, our goal is to ensure your experience exceeds expectations.
           </p>
         </div>
