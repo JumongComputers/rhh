@@ -45,7 +45,7 @@ const Header: React.FC = () => {
         </div>
         
     </div>
-      <nav className="bg-[#2c2c2c] top-0 left-0 sticky lg:relative z-10 flex items-center px-[8vw] py-8 justify-between gap-4">
+     
 
       <nav className="bg-[#2c2c2c] opacity-90 top-0 left-0 sticky lg:relative z-10 flex items-center px-[8vw] py-8 justify-between gap-4">
 
@@ -103,6 +103,7 @@ const Header: React.FC = () => {
       )}
     </>
   );
-};
+
+            }
 
 export default Header;
