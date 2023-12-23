@@ -18,8 +18,9 @@ const bookingService = {
     }
   },
 
-  getBooking: async (): Promise<BookingTypes> => {
+  getAllBookings: async (): Promise<BookingTypes> => {
     const response = await axios.get(`${baseApi}/booking`);
+    console.log("server response:", response);
     return response.data;
   },
 };

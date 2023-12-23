@@ -1,4 +1,5 @@
 export interface BookingTypes {
+  _id?: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -11,4 +12,6 @@ export interface BookingTypes {
   paymentStatus: string;
   paymentRef: string;
   tranxId: string;
+  status?: string;
+  lenght?: number;
 }

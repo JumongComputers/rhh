@@ -22,11 +22,7 @@ const LogoutModel: React.FC<LogoutModelProps> = ({ visible, onClose, children })
   };
 
   return (
-    <div
-      className=" fixed inset-0 bg-black bg-opacity-50 z-20 backdrop-blur-sm flex justify-center items-center"
-      id="container"
-      onClick={handleClose}
-    >
+    <div className=" fixed inset-0 bg-black bg-opacity-50 z-20 flex justify-center items-center" id="container" onClick={handleClose}>
       <div className="w-full max-w-lg   ">
         <div className="bg-white p-8 rounded-md shadow-lg  ">
           {children}

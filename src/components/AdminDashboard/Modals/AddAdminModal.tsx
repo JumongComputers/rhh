@@ -1,4 +1,4 @@
-import { ChevronDown, Eye, EyeOff } from "lucide-react";
+import { ChevronDown, Eye, EyeOff, X } from "lucide-react";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addAdmin } from "@/redux/slices/adminSlice";
@@ -38,7 +38,7 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
   };
 
   const options = [
-    { value: "", label: "Select admin type" },
+    { value: "", label: "Select role" },
     { value: "receptionist", label: "Receptionist" },
     { value: "supervisor", label: "Supervisor" },
     { value: "manager", label: "Manager" },
@@ -52,15 +52,11 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
 
   return (
     <>
-      <div
-        id="container"
-        onClick={handleClose}
-        className="fixed inset-0 backdrop-blur-sm flex items-center bg-black bg-opacity-50 justify-center z-20"
-      >
+      <div id="container" onClick={handleClose} className="fixed inset-0 flex items-center bg-black bg-opacity-50 justify-center z-20">
         <div className="bg-white w-full max-w-4xl rounded-md shadow-lg overflow-y-auto">
           <div className="flex justify-end pt-4 pr-4">
             <button onClick={() => onClose()}>
-              <img src="/view-cancel.png" alt="" />
+              <X />
             </button>
           </div>
           <div className="overflow-y-auto max-h-[520px]">
@@ -71,7 +67,7 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                   <div className="w-full grid gap-4 lg:gap-6 mb-6 mt-12 ">
                     <div className="flex flex-col w-full">
                       <label htmlFor="role" className="text-[#19202C] text-2xl mb-2">
-                        Admin type
+                        Role
                       </label>
                       <div className="relative inline-block">
                         <select

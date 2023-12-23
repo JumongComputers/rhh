@@ -27,7 +27,15 @@ export const createBooking = createAsyncThunk("booking/createBooking", async (bo
   }
 });
 
-// Define other async thunks for your specific use case
+export const getAllBookings = createAsyncThunk("booking/getAllBookings", async (_, thunkAPI) => {
+  try {
+    const response = await bookingService.getAllBookings();
+    return response;
+  } catch (error) {
+    console.error("Error fetching all bookings:", error);
+    throw error;
+  }
+});
 
 export const bookingSlice = createSlice({
   name: "booking",
@@ -45,9 +53,19 @@ export const bookingSlice = createSlice({
       .addCase(createBooking.rejected, (state, action) => {
         state.loading = "failed";
         state.error = action.error.message || null;
-      });
+      })
 
-    // Add other cases for additional async thunks
+      .addCase(getAllBookings.pending, (state) => {
+        state.loading = "pending";
+      })
+      .addCase(getAllBookings.fulfilled, (state, action) => {
+        state.loading = "succeeded";
+        state.bookings = [action.payload];
+      })
+      .addCase(getAllBookings.rejected, (state, action) => {
+        state.loading = "failed";
+        state.error = action.error.message || null;
+      });
   },
 });
 

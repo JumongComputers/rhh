@@ -29,7 +29,7 @@ const DeclineStatusModal: React.FC<DeclineStatusModalProps> = ({ visible, onClos
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-50 z-20 
-    backdrop-blur-sm flex justify-center items-center"
+   flex justify-center items-center"
       id="container"
       onClick={handleClose}
     >

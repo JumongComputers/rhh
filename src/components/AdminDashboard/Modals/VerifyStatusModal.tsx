@@ -30,7 +30,7 @@ const VerifyStatusModal: React.FC<VerifyStatusModelProps> = ({ isVisible, onClos
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-50 z-20 
-    backdrop-blur-sm flex justify-center items-center"
+    b flex justify-center items-center"
       id="container"
       onClick={handleClose}
     >
