@@ -14,9 +14,9 @@ const sidebarData: SidebarItem[] = [
     path: "/admin",
   },
   {
-    title: "Site Admins",
+    title: "Staffs",
     icon: React.createElement(icons.Users, {}),
-    path: "/admin/siteAdmin",
+    path: "/admin/staffs",
   },
   {
     title: "Settings",

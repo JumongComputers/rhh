@@ -16,11 +16,7 @@ const ViewBookingModal: FC<ViewBooking> = ({ visible, onClose, id }) => {
 
   return (
     <>
-      <div
-        id="container"
-        onClick={handleClose}
-        className="fixed inset-0 backdrop-blur-sm flex items-center bg-black bg-opacity-50 justify-center z-50"
-      >
+      <div id="container" onClick={handleClose} className="fixed inset-0 flex items-center bg-black bg-opacity-50 justify-center z-50">
         <div className="bg-white w-full max-w-4xl  rounded-md shadow-lg overflow-y-auto">
           <div className="flex justify-end pt-4 pr-4">
             <div className="flex items-center gap-2">

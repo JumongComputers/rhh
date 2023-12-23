@@ -12,7 +12,7 @@ const SearchInput: React.FC<SearchProps> = ({ value, onChange }) => {
         <input
           type="search"
           name="search"
-          placeholder="Search vehicle"
+          placeholder="Search booking"
           value={value}
           onChange={onChange}
           style={{ boxShadow: "0px 9px 17px rgba(0, 0, 0, 0.07)" }}

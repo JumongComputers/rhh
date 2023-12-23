@@ -31,7 +31,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ children }) => {
         <div className="flex items-center px-2 pb-4 ">
           <div className="flex items-center gap-2 ">
             <img src="/dash-slogo.svg" alt="" />
-            <span className="text-white font-normal text-[24px] leading-[30px] ">Rise Hotel</span>
+            <span className="text-white font-normal text-[24px] leading-[30px] ">Rise High Hotel</span>
           </div>
           {/* <div className="cursor-pointer transition-all duration-300 text-white" style={{ marginLeft: isOpen ? "40px" : "0px" }}>
             <Menu onClick={toggle} />
