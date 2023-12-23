@@ -2,7 +2,7 @@ import { LoginTypes } from "@/types/auth";
 import axios from "axios";
 
 // const baseApi = process.env.NEXT_PUBLIC_BASE_API;
-const baseApi = "https://rise-high.onrender.com/api";
+export const baseApi = "https://rise-high.onrender.com/api";
 
 const authService = {
   login: async (loginData: LoginTypes): Promise<LoginTypes> => {

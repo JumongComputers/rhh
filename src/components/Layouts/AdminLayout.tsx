@@ -8,7 +8,7 @@ interface AdminLayoutProps {
 
 const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   return (
-    <div>
+    <div className="bg-gray-100">
       <Provider store={store}>{children}</Provider>
     </div>
   );

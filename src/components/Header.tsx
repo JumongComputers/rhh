@@ -18,6 +18,7 @@ const Header: React.FC = () => {
 
   return (
     <>
+
      <div className="mx-auto py-2 bg-white text-blue-900 flex justify-between text-lg lg:text-2xl">
         <div className="flex justify-around w-full">
         <div className="flex gap-2 items-center">
@@ -45,8 +46,11 @@ const Header: React.FC = () => {
         
     </div>
       <nav className="bg-[#2c2c2c] top-0 left-0 sticky lg:relative z-10 flex items-center px-[8vw] py-8 justify-between gap-4">
+
+      <nav className="bg-[#2c2c2c] opacity-90 top-0 left-0 sticky lg:relative z-10 flex items-center px-[8vw] py-8 justify-between gap-4">
+
         <Link href="/">
-          <img src="/rise high (1).svg" alt="Logo" className="h-24 w-24 rounded-md" />
+          <img src="/rise-hotel.svg" alt="Logo" className="lg:h-[80px] h-[40px] rounded-md" />
         </Link>
         <ul className={`lg:flex text-white gap-8 font-medium text-3xl ${isSidebarOpen ? "hidden" : "hidden md:flex"}`}>
           <li className={`hover:text-blue-400 ${router.pathname === "/" ? "text-blue-400" : ""}`}>
@@ -73,11 +77,11 @@ const Header: React.FC = () => {
       {/* Mobile Sidebar */}
       {isSidebarOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-75 z-50" onClick={closeSidebar}>
-          <div className="bg-[#2c2c2c] fixed inset-y-0 right-0 w-64 p-4 flex flex-col items-center">
+          <div className="bg-white fixed inset-y-0 right-0 w-[70vw] p-4 flex flex-col items-center">
             <div className="mb-12">
-              <X size={24} color="white" onClick={closeSidebar} />
+              <X size={32} color="black" onClick={closeSidebar} />
             </div>
-            <ul className="text-white font-light text-lg flex flex-col gap-6 items-center">
+            <ul className="text-black font-light text-4xl flex flex-col gap-6 items-center">
               <li className={`hover:text-blue-400 ${router.pathname === "/" ? "text-blue-400" : ""}`}>
                 <Link href="/">Home</Link>
               </li>

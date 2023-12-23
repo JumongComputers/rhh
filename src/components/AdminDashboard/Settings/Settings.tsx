@@ -18,7 +18,7 @@ const Settings: React.FC = () => {
               } `}
             >
               <User className="w-8 h-8" />
-              <span className="font-normal text-6xl">My Account</span>
+              <span className="font-normal text-4xl">My Account</span>
             </button>
             <button
               onClick={() => setActive("P")}
@@ -27,7 +27,7 @@ const Settings: React.FC = () => {
               } `}
             >
               <Lock className="w-8 h-8" />
-              <span className="font-normal text-6xl">Password</span>
+              <span className="font-normal text-4xl">Password</span>
             </button>
           </div>
           <div className="flex-1 ">
