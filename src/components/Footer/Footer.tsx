@@ -28,12 +28,13 @@ const Footer: React.FC = () => {
 
                 <div className="flex items-center gap-4">
                 <i className="fa-solid fa-phone"></i>
-                <p>0901 441 1111</p>
+                <p>09076381843</p>
                 </div>
 
                 <div className="flex items-center gap-4">
                 <i className="fa-solid fa-box"></i>
-                <p>info@risehigh.com</p>
+                <p>
+receptionist@risehighhotel.com</p>
                 </div>
 
                  <div className='flex flex-col my-4'>

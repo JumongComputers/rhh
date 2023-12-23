@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useRouter } from "next/router";
+import WhatsAppChat from "./Whatsapp/Whatsapp";
 
 const Header: React.FC = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -17,7 +18,37 @@ const Header: React.FC = () => {
 
   return (
     <>
+
+     <div className="mx-auto py-2 bg-white text-blue-900 flex justify-between text-lg lg:text-2xl">
+        <div className="flex justify-around w-full">
+        <div className="flex gap-2 items-center">
+        <i className="fa-regular fa-envelope "></i>
+          <p>receptionist@risehighhotel.com</p>
+        </div>
+        <div className="flex gap-2">
+        <i className="fa-solid fa-phone py-1"></i>
+        <p>09076381843</p>
+        </div>
+
+        <div className=" flex gap-3">
+       <div className="flex  gap-3 text-3xl">
+            <Link href="#"><i className="fa-brands fa-square-facebook text-2xl md:text-3xl"></i></Link>
+            <Link href="#"><i className="fa-brands fa-square-twitter text-2xl md:text-3xl"></i></Link>
+            <Link href="#"><i className="fa-brands fa-square-instagram text-2xl md:text-3xl"></i></Link>
+            <Link href="#"><i className="fa-regular fa-envelope text-2xl md:text-3xl"></i></Link>
+            <div className=" ">
+            <WhatsAppChat />
+            </div>
+
+            </div>
+        </div>
+        </div>
+        
+    </div>
+      <nav className="bg-[#2c2c2c] top-0 left-0 sticky lg:relative z-10 flex items-center px-[8vw] py-8 justify-between gap-4">
+
       <nav className="bg-[#2c2c2c] opacity-90 top-0 left-0 sticky lg:relative z-10 flex items-center px-[8vw] py-8 justify-between gap-4">
+
         <Link href="/">
           <img src="/rise-hotel.svg" alt="Logo" className="lg:h-[80px] h-[40px] rounded-md" />
         </Link>
