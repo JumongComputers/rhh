@@ -54,7 +54,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       },
     };
   } catch (error: any) {
-    // console.error('Error fetching data:', error.message);
+    console.error('Error fetching data:', error.message);
     return {
       props: {
         data: null, // Handle error as needed

@@ -30,7 +30,7 @@ const BookingCard: React.FC<BookingCardProps> = ({ data }) => {
           </div>
         )}
       </div>
-      <span className="text-[#282d3c] font-normal uppercase text-5xl">{data.name}</span>
+      <span className="text-[#282d3c] font-bold uppercase text-5xl">{data.name}</span>
       <span className="text-[#282d3c] font-normal text-xl">{data.numOfRooms}</span>
       <span className="text-[#282d3c] font-normal h-[9rem] text-xl md:text-4xl lg:text-xl">{data.text}</span>
       <div className="flex gap-1 items-center text-5xl">

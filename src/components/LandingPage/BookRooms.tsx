@@ -14,7 +14,7 @@ const BookRooms: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative h-[340vh] lg:h-full bg-black mb-20 lg:mb-32">
+    <div className="relative h-[340vh] lg:h-full bg-black mb-20 lg:mb-32" id='rooms'>
       <img
         src="https://res.cloudinary.com/dyijwff8m/image/upload/v1702731461/gridex/ab2_gabvo7.webp"
         alt="room image"
@@ -29,8 +29,7 @@ const BookRooms: React.FC = () => {
         <div className="flex flex-col gap-2 lg:justify-center lg:items-center px-8 lg:px-[8vw]  text-center">
           <h1 className="lg:text-8xl text-6xl font-bold">Our Rooms</h1>
           <p className="font-normal max-w-6xl text-base md:text-2xl opacity-70">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores atque quia doloribus dignissimos fugit vitae perferendis! Ut adipisci,
-            laboriosam nulla aliquam vero dolore natus optio culpa in! Blanditiis, quos repellat?
+            We believe in crafting more than just a temporary escape. Every corner of our hotel is designed to immerse you in a world of sophistication and comfort. Whether you&apos;re here for business or leisure, our goal is to ensure your experience exceeds expectations.
           </p>
         </div>
 

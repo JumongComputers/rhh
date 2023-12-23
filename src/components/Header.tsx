@@ -26,10 +26,10 @@ const Header: React.FC = () => {
             <Link href="/">Home</Link>
           </li>
           <li className={`hover:text-blue-400 ${router.pathname === "/about" ? "text-blue-400" : ""}`}>
-            <Link href="/about">About Us</Link>
+            <Link href="#about">About Us</Link>
           </li>
           <li className={`hover:text-blue-400 ${router.pathname === "/rooms" ? "text-blue-400" : ""}`}>
-            <Link href="/rooms">Rooms</Link>
+            <Link href="#rooms">Rooms</Link>
           </li>
           <li className={`hover:text-blue-400 ${router.pathname === "/contact" ? "text-blue-400" : ""}`}>
             <Link href="/contact">Contact Us</Link>
@@ -55,10 +55,10 @@ const Header: React.FC = () => {
                 <Link href="/">Home</Link>
               </li>
               <li className={`hover:text-blue-400 ${router.pathname === "/about" ? "text-blue-400" : ""}`}>
-                <Link href="/about">About Us</Link>
+                <Link href="#about">About Us</Link>
               </li>
               <li className={`hover:text-blue-400 ${router.pathname === "/rooms" ? "text-blue-400" : ""}`}>
-                <Link href="/rooms">Rooms</Link>
+                <Link href="#rooms">Rooms</Link>
               </li>
               <li className={`hover:text-blue-400 ${router.pathname === "/contact" ? "text-blue-400" : ""}`}>
                 <Link href="/contact">Contact Us</Link>
