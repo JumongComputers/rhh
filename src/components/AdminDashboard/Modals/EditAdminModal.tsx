@@ -1,19 +1,9 @@
+import { updateAdmin } from "@/redux/slices/adminSlice";
+import { RootState } from "@/redux/store/store";
+import { AddAdminTypes } from "@/types/admin";
 import { ChevronDown, X } from "lucide-react";
 import React, { useEffect, useState } from "react";
-
-interface Option {
-  value: string;
-  label: string;
-}
-
-interface Admin {
-  _id: string;
-  role: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber: string;
-}
+import { useDispatch, useSelector } from "react-redux";
 
 interface EditAdminModalProps {
   visible: boolean;
@@ -22,48 +12,64 @@ interface EditAdminModalProps {
 }
 
 const EditAdminModal: React.FC<EditAdminModalProps> = ({ visible, onClose, id }) => {
-  const [admin, setAdmin] = useState<Admin | null>(null);
+  const dispatch = useDispatch();
+  const staffs = useSelector((state: RootState) => state.admin.admins);
+  const loading = useSelector((state: RootState) => state.admin.loading);
+  const singleAdmin = staffs.find((item) => item._id == id);
+  // const [admin, setAdmin] = useState<AddAdminTypes>(singleAdmin as AddAdminTypes);
+  const [admin, setAdmin] = useState<AddAdminTypes>({
+    ...singleAdmin,
+    role: singleAdmin?.role || "",
+    status: singleAdmin?.status || "",
+  } as AddAdminTypes);
 
-  // Fetch the single admin based on the given id
+  console.log("ID:", id);
+
   useEffect(() => {
-    // Add your logic to fetch the admin data based on the id
-    // For example, you can make an API call here
-    // Replace the following with your actual API call or any data retrieval logic
-    const fetchData = () => {
-      // Replace the following with your actual data
-      const fetchedAdmin: Admin = {
-        _id: id,
-        role: "Manager",
-        firstName: "John",
-        lastName: "Doe",
-        email: "john.doe@example.com",
-        phoneNumber: "09035004810",
-      };
-      setAdmin(fetchedAdmin);
-    };
+    setAdmin(singleAdmin as AddAdminTypes);
+  }, [singleAdmin]);
 
-    fetchData();
-  }, [id]);
+  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  //   const { name, value } = e.target;
+  //   setAdmin((prevAdmin) => ({ ...prevAdmin!, [name]: value }));
+  // };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setAdmin((prevAdmin) => ({ ...prevAdmin!, [name]: value }));
+    setAdmin((prevAdmin) => ({
+      ...prevAdmin!,
+      [name]: value,
+    }));
+  };
+
+  // For the select elements, handle them separately
+  const handleSelectChange = (name: string, value: string) => {
+    setAdmin((prevAdmin) => ({
+      ...prevAdmin!,
+      [name]: value,
+    }));
   };
 
   const options = [
     { value: "", label: "Select role" },
+    { value: "admin", label: "Admin" },
     { value: "receptionist", label: "Receptionist" },
     { value: "supervisor", label: "Supervisor" },
     { value: "manager", label: "Manager" },
   ];
 
+  const statusOptions = [
+    { value: "", label: "Select status" },
+    { value: "active", label: "Active" },
+    { value: "inactive", label: "Inactive" },
+  ];
+
   const editAdmin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Add your logic to update the admin data
-    // For example, you can make an API call here or dispatch an action (since Redux is removed)
-    // Replace the following with your actual logic for updating admin data
-    console.log("Admin data updated:", admin);
-    onClose();
+
+    dispatch(updateAdmin({ adminId: id, updatedAdminData: admin }) as any);
+
+    // onClose();
   };
 
   if (!visible || !admin) return null;
@@ -109,7 +115,7 @@ const EditAdminModal: React.FC<EditAdminModalProps> = ({ visible, onClose, id })
                       block appearance-none text-xl
                       "
                           value={admin?.role}
-                          onChange={handleInputChange}
+                          onChange={(e) => handleSelectChange("role", e.target.value)}
                           name="role"
                         >
                           {options.map((option) => (
@@ -177,20 +183,34 @@ const EditAdminModal: React.FC<EditAdminModalProps> = ({ visible, onClose, id })
                       />
                     </div>
                     <div className="flex flex-col w-full">
-                      <label htmlFor="phoneNumber" className="text-[#19202C] text-2xl mb-2">
-                        Phone Number
+                      <label htmlFor="status" className="text-[#19202C] text-2xl mb-2">
+                        Status
                       </label>
-                      <input
-                        value={admin?.phoneNumber}
-                        onChange={handleInputChange}
-                        name="phoneNumber"
-                        type="text"
-                        className="
-                          py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
-                          placeholder-gray-200::placeholder placeholder-opacity-75 text-xl
-                          "
-                        placeholder="Enter phone number"
-                      />
+                      <div className="relative  inline-block">
+                        <select
+                          className="
+                      py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
+                      block appearance-none text-xl
+                      "
+                          value={admin?.status}
+                          onChange={(e) => handleSelectChange("status", e.target.value)}
+                          name="status"
+                        >
+                          {statusOptions.map((option) => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
+                        </select>
+                        <div
+                          className="
+                      pointer-events-none absolute inset-y-0 right-0
+                      flex items-center px-2 text-[#676869]
+                      "
+                        >
+                          <ChevronDown className="fill-current h-6 w-6" />
+                        </div>
+                      </div>
                     </div>
                     <div className=" flex justify-between items-center pt-8 ">
                       <button

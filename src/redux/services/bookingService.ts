@@ -23,6 +23,15 @@ const bookingService = {
     console.log("server response:", response);
     return response.data;
   },
+
+  deleteBooking: async (bookingId: string): Promise<void> => {
+    try {
+      const response = await axios.delete(`${baseApi}/booking/${bookingId}`);
+      console.log(`Booking with ID ${bookingId} deleted successfully`);
+    } catch (error: any) {
+      throw new Error(`Failed to delete booking: ${error.message}`);
+    }
+  },
 };
 
 export default bookingService;

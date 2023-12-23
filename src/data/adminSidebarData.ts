@@ -19,6 +19,11 @@ const sidebarData: SidebarItem[] = [
     path: "/admin/staffs",
   },
   {
+    title: "Restaurant",
+    icon: React.createElement(icons.ChefHat, {}),
+    path: "/admin/restaurant",
+  },
+  {
     title: "Settings",
     icon: React.createElement(icons.Settings, {}),
     path: "/admin/settings",

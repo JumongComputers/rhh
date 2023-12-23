@@ -1,4 +1,6 @@
+import { deleteAdmin } from "@/redux/slices/adminSlice";
 import React from "react";
+import { useDispatch } from "react-redux";
 
 interface DeleteUserModalProps {
   visible: boolean;
@@ -8,6 +10,8 @@ interface DeleteUserModalProps {
 }
 
 const DeleteUserModal: React.FC<DeleteUserModalProps> = ({ visible, onClose, children, id }) => {
+  const dispatch = useDispatch();
+
   if (!visible) return null;
 
   const handleClose = (e: React.MouseEvent) => {
@@ -16,9 +20,8 @@ const DeleteUserModal: React.FC<DeleteUserModalProps> = ({ visible, onClose, chi
 
   const adminDelete = (e: React.MouseEvent) => {
     e.preventDefault();
-    // Add your logic for deleting user, since Redux and dispatch are removed
-    // For example, you can make an API call here or handle deletion in a parent component
-    console.log(`Deleting user with ID: ${id}`);
+
+    dispatch(deleteAdmin(id) as any);
     onClose();
   };
 

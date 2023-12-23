@@ -1,4 +1,6 @@
+import { deleteBooking } from "@/redux/slices/bookingSlice";
 import React from "react";
+import { useDispatch } from "react-redux";
 
 interface DeleteUserModalProps {
   visible: boolean;
@@ -8,6 +10,7 @@ interface DeleteUserModalProps {
 }
 
 const DeleteBookingModal: React.FC<DeleteUserModalProps> = ({ visible, onClose, children, id }) => {
+  const dispatch = useDispatch();
   if (!visible) return null;
 
   const handleClose = (e: React.MouseEvent) => {
@@ -16,9 +19,8 @@ const DeleteBookingModal: React.FC<DeleteUserModalProps> = ({ visible, onClose, 
 
   const bookingDelete = (e: React.MouseEvent) => {
     e.preventDefault();
-    // Add your logic for deleting user, since Redux and dispatch are removed
-    // For example, you can make an API call here or handle deletion in a parent component
-    console.log(`Deleting booking with ID: ${id}`);
+
+    dispatch(deleteBooking(id) as any);
     onClose();
   };
 

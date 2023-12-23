@@ -7,17 +7,17 @@ import DeleteUserModal from "../Modals/DeleteUserModal";
 import { AddAdminTypes } from "@/types/admin";
 
 interface StaffDetailsProps {
-  staffs: AddAdminTypes[];
+  restaurant: AddAdminTypes[];
 }
 
-const StaffDetails: React.FC<StaffDetailsProps> = ({ staffs }) => {
+const RestaurantDetails: React.FC<StaffDetailsProps> = ({ restaurant }) => {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 5;
 
   const indexOfLastUser = (currentPage + 1) * itemsPerPage;
   const indexOfFirstUser = currentPage * itemsPerPage;
-  const currentItems = staffs?.slice(indexOfFirstUser, indexOfLastUser);
+  const currentItems = restaurant?.slice(indexOfFirstUser, indexOfLastUser);
 
   const handlePageClick = (selected: { selected: number }) => {
     setCurrentPage(selected.selected);
@@ -35,34 +35,29 @@ const StaffDetails: React.FC<StaffDetailsProps> = ({ staffs }) => {
   return (
     <Fragment>
       <div className="px-4 py-6 font-[DM Sans] hidden lg:block">
-        <div className="flex justify-between items-center ">
-          <div className="flex gap-6 items-center mb-6">
-            <form onSubmit={handleSubmit} className=" flex items-center">
-              <div className="relative ">
-                <input
-                  type="search"
-                  name="search"
-                  placeholder="Search staff"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  style={{ boxShadow: "0px 9px 17px rgba(0, 0, 0, 0.07)" }}
-                  className="bg-white text-[#19202C] h-16 px-5 pl-16 rounded-md 
+        <div className="flex gap-6 items-center mb-6">
+          <form onSubmit={handleSubmit} className=" flex items-center">
+            <div className="relative ">
+              <input
+                type="search"
+                name="search"
+                placeholder="Search staff"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                style={{ boxShadow: "0px 9px 17px rgba(0, 0, 0, 0.07)" }}
+                className="bg-white text-[#19202C] h-16 px-5 pl-16 rounded-md 
               text-lg focus:outline-none w-[320px] "
-                />
-                <button type="submit" className="absolute left-0 top-0 mt-3 ml-4">
-                  <Search className="text-gray-400 h-8 w-8" />
-                </button>
-              </div>
-            </form>
-          </div>
-          <button onClick={() => setShowAddModal(true)} className="bg-[#0D60D8] text-white text-lg rounded-md px-6 py-2">
-            + Add admin
-          </button>
+              />
+              <button type="submit" className="absolute left-0 top-0 mt-3 ml-4">
+                <Search className="text-gray-400 h-8 w-8" />
+              </button>
+            </div>
+          </form>
         </div>
 
         <div style={{ boxShadow: "2px 8px 24px rgba(12, 33, 50, 0.08)" }} className="bg-white rounded-md  ">
           <div className="p-4 w-full  overflow-x-auto pt-16 ">
-            {staffs?.length === 0 ? (
+            {restaurant?.length === 0 ? (
               <span>-- No StaffFound ...</span>
             ) : (
               <table className="w-full  text-sm">
@@ -78,8 +73,8 @@ const StaffDetails: React.FC<StaffDetailsProps> = ({ staffs }) => {
                 </thead>
 
                 <tbody>
-                  {currentItems.map((staff) => {
-                    const { _id, email, firstName, lastName, role } = staff;
+                  {currentItems.map((restauarant) => {
+                    const { _id, email, firstName, lastName, role } = restauarant;
 
                     return (
                       <Fragment key={_id}>
@@ -167,7 +162,7 @@ const StaffDetails: React.FC<StaffDetailsProps> = ({ staffs }) => {
               </span>
             }
             breakLabel={"..."}
-            pageCount={Math.ceil(staffs?.length / itemsPerPage)}
+            pageCount={Math.ceil(restaurant?.length / itemsPerPage)}
             marginPagesDisplayed={2}
             pageRangeDisplayed={5}
             onPageChange={handlePageClick}
@@ -177,9 +172,8 @@ const StaffDetails: React.FC<StaffDetailsProps> = ({ staffs }) => {
           />
         </div>
       </div>
-      <AddAdminModal visible={showAddModal} onClose={() => setShowAddModal(false)} />
     </Fragment>
   );
 };
 
-export default StaffDetails;
+export default RestaurantDetails;

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import bookingService from "../services/bookingService";
 import { BookingTypes } from "@/types/booking";
+import { toast } from "react-toastify";
 
 interface BookingState {
   bookings: BookingTypes[];
@@ -37,6 +38,16 @@ export const getAllBookings = createAsyncThunk("booking/getAllBookings", async (
   }
 });
 
+export const deleteBooking = createAsyncThunk("admin/deleteAdmin", async (bookingId: string, thunkAPI) => {
+  try {
+    await bookingService.deleteBooking(bookingId);
+    return bookingId; // Return the Id so you can remove it from the state
+  } catch (error) {
+    console.error("Error deleting admin:", error);
+    throw error;
+  }
+});
+
 export const bookingSlice = createSlice({
   name: "booking",
   initialState,
@@ -65,6 +76,21 @@ export const bookingSlice = createSlice({
       .addCase(getAllBookings.rejected, (state, action) => {
         state.loading = "failed";
         state.error = action.error.message || null;
+      })
+
+      .addCase(deleteBooking.pending, (state) => {
+        state.loading = "pending";
+      })
+      .addCase(deleteBooking.fulfilled, (state, action) => {
+        state.loading = "succeeded";
+        const deletedBookingId = action.payload;
+        // Remove the deleted admin from the state
+        state.bookings = state.bookings.filter((admin) => admin._id !== deletedBookingId);
+      })
+      .addCase(deleteBooking.rejected, (state, action) => {
+        state.loading = "failed";
+        state.error = action.error.message || null;
+        toast.error("Failed to Delete Booking");
       });
   },
 });
