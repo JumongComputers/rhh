@@ -8,12 +8,12 @@ const Footer: React.FC = () => {
     
    <div className='bg-[#2c2c2c] text-white py-10'>
     <SectionWrapper css=''>
-       <nav className='flex md:flex-row flex-wrap gap-8 justify-center md:justify-between px-4 py-10 text-xl'>
+       <nav className='flex md:flex-row flex-wrap gap-8 justify-around md:justify-between px-4 py-10 text-xl'>
 
-       <div className='max-w-md flex flex-col gap-1'>
+       <div className='md:max-w-md flex flex-col gap-2'>
          <h4 className=' text-2xl lg:text-3xl my-8 text-orange-200'>Rise High Hotel</h4>
          <div className='w-full'>
-          <p className='text-justify text-xl'>Whether you&apos;re seeking a lavish getaway, a seamless business trip, or a memorable event venue, Rise High Hotel is ready to exceed your expectations. We invite you to experience our world-class hospitality and discover the true essence of luxury living.</p>
+          <p className='text-left text-3xl'>Whether you&apos;re seeking a lavish getaway, a seamless business trip, or a memorable event venue, Rise High Hotel is ready to exceed your expectations.</p>
          </div>
        </div>
 
@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
                
                 
             </div>
-            <div className="flex flex-col gap-1 text-3xl">
+            <div className="flex flex-col gap-2 text-3xl">
             <h4 className='text-2xl lg:text-3xl my-8 text-orange-200'>Facilities</h4>
                 <div className="flex items-center gap-4">
                     <i className="fa-solid fa-wine-glass"></i>
