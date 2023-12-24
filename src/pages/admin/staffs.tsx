@@ -6,7 +6,7 @@ import { RootState } from "@/redux/store/store";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function staffs() {
+export default function Staffs() {
   const dispatch = useDispatch();
   const staffs = useSelector((state: RootState) => state.admin.admins);
   const loading = useSelector((state: RootState) => state.admin.loading);
@@ -24,6 +24,6 @@ export default function staffs() {
   );
 }
 
-staffs.getAdmin = function pageLayout(page: React.ReactNode) {
+Staffs.getAdmin = function pageLayout(page: React.ReactNode) {
   return <div className="bg-[#F5F5F5] font-outfit w-full h-screen min-h-screen">{page}</div>;
 };

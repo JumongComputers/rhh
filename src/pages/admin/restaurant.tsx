@@ -7,7 +7,7 @@ import { RootState } from "@/redux/store/store";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function restaurant() {
+export default function Restaurant() {
   const dispatch = useDispatch();
   const restaurant = useSelector((state: RootState) => state.restaurant.restaurants);
   const loading = useSelector((state: RootState) => state.restaurant.loading);
@@ -25,6 +25,6 @@ export default function restaurant() {
   );
 }
 
-restaurant.getAdmin = function pageLayout(page: React.ReactNode) {
+Restaurant.getAdmin = function pageLayout(page: React.ReactNode) {
   return <div className="bg-[#F5F5F5] font-outfit w-full h-screen min-h-screen">{page}</div>;
 };
