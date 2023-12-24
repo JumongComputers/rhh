@@ -10,6 +10,7 @@ import { BookingTypes } from "@/types/booking";
 import axios from "axios";
 import { baseApi } from "@/redux/services/authService";
 import DeleteBookingModal from "../Modals/DeleteBooking";
+import UpdateStatusModal from "../Modals/UpdateStatus";
 
 interface BookingTableProps {
   bookings: BookingTypes[];
@@ -68,6 +69,11 @@ const AdminList: React.FC<BookingTableProps> = ({ bookings }) => {
 
   const [showModal, setShowModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [showUpdateStatusModal, setShowUpdateStatusModal] = useState(false);
+
+  const handleUpdateStatusClick = () => {
+    setShowUpdateStatusModal(true);
+  };
 
   const [selectedBookingId, setSelectedBookingId] = useState("");
 
@@ -118,24 +124,14 @@ const AdminList: React.FC<BookingTableProps> = ({ bookings }) => {
             </div>
           </div>
 
-          <div className="flex justify-between items-center">
-            <button
-              className="bg-blue-500 text-white text-4xl py-2 px-4 rounded-md mt-4"
-              onClick={() => {
-                // Handle update status logic here
-              }}
-            >
-              Update Status
-            </button>
-            <button
-              className="bg-red-500 text-white text-4xl py-2 px-4 rounded-md mt-4"
-              onClick={() => {
-                // Handle delete logic here
-              }}
-            >
-              Delete
-            </button>
-          </div>
+          <button
+            className="bg-blue-500 flex items-center justify-center text-white w-1/2 text-4xl py-2 px-4 mx-auto rounded-md my-12"
+            onClick={handleUpdateStatusClick}
+          >
+            Update Status
+          </button>
+
+          <UpdateStatusModal showModal={showUpdateStatusModal} onClose={() => setShowUpdateStatusModal(false)} />
         </div>
       ) : (
         <div>
