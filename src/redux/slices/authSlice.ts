@@ -43,7 +43,7 @@ export const authSlice = createSlice({
       })
       .addCase(userLogin.rejected, (state, action) => {
         state.loading = "failed";
-        toast.error(action.error.message);
+        toast.error("login failed");
         state.error = action.error.message || null;
       });
   },
