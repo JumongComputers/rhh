@@ -27,7 +27,7 @@ const Header: React.FC = () => {
         </div>
         <div className="flex gap-2">
         <i className="fa-solid fa-phone py-1"></i>
-        <p>09076381843</p>
+        <p>09050000770</p>
         </div>
 
         <div className=" flex gap-3">
