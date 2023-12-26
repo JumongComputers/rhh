@@ -21,13 +21,7 @@ const bookingData: Booking[] = [
     text: "For extra space, book one of our Family suites. 2 connecting rooms with a shared bathroom.",
     price: 45000,
   },
-  {
-    image: "https://res.cloudinary.com/dyijwff8m/image/upload/v1702731443/gridex/005-OVI_9150_ddhb0v.webp",
-    numOfRooms: "1 king bed | 2 adults",
-    name: "King Bed Suite",
-    text: "For an extended stay or for extra space, choose one of our Diplomatic Suites featuring a separate living area and kitchenette.",
-    price: 55000,
-  },
+
   {
     image: "https://res.cloudinary.com/dyijwff8m/image/upload/v1702731449/gridex/070-OVI_9300_inchms.webp",
     numOfRooms: "1 king bed | 2 adults",
@@ -35,6 +29,14 @@ const bookingData: Booking[] = [
     text: "For an extended stay or for extra space, choose one of our Diplomatic Suites featuring a separate living area and kitchenette.",
     price: 50000,
   },
+
+  {
+    image: "https://res.cloudinary.com/dyijwff8m/image/upload/v1702731443/gridex/005-OVI_9150_ddhb0v.webp",
+    numOfRooms: "1 king bed | 2 adults",
+    name: "King Bed Suite",
+    text: "For an extended stay or for extra space, choose one of our Diplomatic Suites featuring a separate living area and kitchenette.",
+    price: 55000,
+  }
 ];
 
 export default bookingData;

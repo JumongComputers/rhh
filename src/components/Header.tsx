@@ -50,7 +50,7 @@ const Header: React.FC = () => {
       <nav className="bg-[#2c2c2c] opacity-90 top-0 left-0 sticky lg:relative z-10 flex items-center px-[8vw] py-8 justify-between gap-4">
 
         <Link href="/">
-          <img src="/rise-hotel.svg" alt="Logo" className="lg:h-[80px] h-[40px] rounded-md" />
+          <img src="/rise-high-hotel-logo white.svg" alt="Logo" className="lg:h-[80px] h-[40px] rounded-md" />
         </Link>
         <ul className={`lg:flex text-white gap-8 font-medium text-3xl ${isSidebarOpen ? "hidden" : "hidden md:flex"}`}>
           <li className={`hover:text-blue-400 ${router.pathname === "/" ? "text-blue-400" : ""}`}>
@@ -94,9 +94,9 @@ const Header: React.FC = () => {
               <li className={`hover:text-blue-400 ${router.pathname === "/contact" ? "text-blue-400" : ""}`}>
                 <Link href="/contact">Contact Us</Link>
               </li>
-              {/* <li className={`hover:text-blue-400 ${router.pathname === "/auth/login" ? "text-blue-400" : ""}`}>
-                <Link href="/auth/login">Sign in</Link>
-              </li> */}
+              <li className={`hover:text-blue-400 ${router.pathname === "/auth/login" ? "text-blue-400" : ""}`}>
+                <Link href="/auth/login">Book Restaurant</Link>
+              </li>
             </ul>
           </div>
         </div>

@@ -1,16 +1,13 @@
+import { RestaurantTypes } from "@/types/booking";
 import axios from "axios";
-import { baseApi } from "./authService";
+
+const baseApi = process.env.NEXT_PUBLIC_BASE_API;
 
 const restaurantService = {
-  getRestaurant: async (): Promise<any[]> => {
-    try {
-      const response = await axios.get(`${baseApi}/restaurant`);
-      console.log("all restaurant:", response);
-      return response.data;
-    } catch (error: any) {
-      throw new Error(`Failed to get all admins: ${error.message}`);
-    }
-  },
+  createRestaurantBooking: async (bookingData: RestaurantTypes): Promise<RestaurantTypes> => {
+    const response = await axios.post(`${baseApi}/booking/restaurant`, bookingData);
+    return response.data;
+  }
 };
 
 export default restaurantService;
