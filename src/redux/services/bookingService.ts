@@ -1,5 +1,6 @@
-import { BookingTypes } from "@/types/booking";
+import { BookingTypes, RoomPrice } from "@/types/booking";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const baseApi = process.env.NEXT_PUBLIC_BASE_API;
 
@@ -27,9 +28,39 @@ const bookingService = {
   deleteBooking: async (bookingId: string): Promise<void> => {
     try {
       const response = await axios.delete(`${baseApi}/booking/${bookingId}`);
-      console.log(`Booking with ID ${bookingId} deleted successfully`);
     } catch (error: any) {
       throw new Error(`Failed to delete booking: ${error.message}`);
+    }
+  },
+
+  updateBookingStatus: async (bookingId: string, bookingData: BookingTypes): Promise<void> => {
+    try {
+      const response = await axios.patch(`${baseApi}/booking/${bookingId}/status`, bookingData);
+      toast.success(response.data.message);
+      console.log(response, "bookstatus");
+    } catch (error: any) {
+      throw new Error(`Failed to delete booking: ${error.message}`);
+    }
+  },
+
+  setRoomPrice: async (data: RoomPrice): Promise<RoomPrice> => {
+    try {
+      const response = await axios.post(`${baseApi}/booking/room-prices`, data);
+      toast.success(response.data.message);
+      return response.data;
+    } catch (error: any) {
+      throw new Error(`Failed to set room price: ${error.message}`);
+    }
+  },
+
+  updateRoomPrice: async (data: RoomPrice): Promise<RoomPrice> => {
+    try {
+      const response = await axios.patch(`${baseApi}/booking/room-prices/luxury`, data);
+      console.log("updatePrice:", response);
+      toast.success(response.data.message);
+      return response.data;
+    } catch (error: any) {
+      throw new Error(`Failed to update room price: ${error.message}`);
     }
   },
 };
