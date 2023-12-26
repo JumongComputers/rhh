@@ -8,14 +8,14 @@ export interface Slide {
 
 const slides: Slide[] = [
   {
-    imageUrl: "https://res.cloudinary.com/dyijwff8m/image/upload/v1702733039/gridex/OVI__at_10.45.56_qky7ae.webp",
+    imageUrl: "https://res.cloudinary.com/dyijwff8m/image/upload/v1702731455/gridex/133-OVI_9449_ls8fov.webp",
     heading: "Rise High Hotel",
     initial: { y: -20, opacity: 0 },
     animate: { y: 0, opacity: 1 },
     transition: { duration: 0.8, delay: 0.5 },
   },
   {
-    imageUrl: "https://res.cloudinary.com/dyijwff8m/image/upload/v1702731467/gridex/hero4_enkmi3.webp",
+    imageUrl: "https://res.cloudinary.com/dyijwff8m/image/upload/v1702731447/gridex/053-OVI_9257_1_c5ra3g.webp",
     heading: "Rise High Hotel",
     initial: { y: -20, opacity: 0 },
     animate: { y: 0, opacity: 1 },
