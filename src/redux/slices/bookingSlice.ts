@@ -48,6 +48,19 @@ export const deleteBooking = createAsyncThunk("admin/deleteAdmin", async (bookin
   }
 });
 
+export const updateBookingStatus = createAsyncThunk(
+  "admin/updateStatus",
+  async ({ bookingId, bookingData }: { bookingId: string; bookingData: BookingTypes }, thunkAPI) => {
+    try {
+      const response = await bookingService.updateBookingStatus(bookingId, bookingData);
+      return response;
+    } catch (error) {
+      console.error("Error updating booking status:", error);
+      throw error;
+    }
+  }
+);
+
 export const bookingSlice = createSlice({
   name: "booking",
   initialState,
@@ -91,6 +104,18 @@ export const bookingSlice = createSlice({
         state.loading = "failed";
         state.error = action.error.message || null;
         toast.error("Failed to Delete Booking");
+      })
+
+      .addCase(updateBookingStatus.pending, (state) => {
+        state.loading = "pending";
+      })
+      .addCase(updateBookingStatus.fulfilled, (state, action: any) => {
+        state.loading = "succeeded";
+        state.bookings = [action.payload];
+      })
+      .addCase(updateBookingStatus.rejected, (state, action) => {
+        state.loading = "failed";
+        state.error = action.error.message || null;
       });
   },
 });
