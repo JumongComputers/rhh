@@ -21,11 +21,9 @@ export const adminValidationSchema = Yup.object().shape({
 });
 
 export const addRestaurantSchema = Yup.object().shape({
-  role: Yup.string().required("Admin type is required"),
   firstName: Yup.string().required("First name is required"),
   lastName: Yup.string().required("Last name is required"),
   email: Yup.string().email("Invalid email").required("Email is required"),
   phoneNumber: Yup.number().required("Phone number is required"),
-  message:  Yup.string().required("First name is required"),
- 
+  message: Yup.string().required("First name is required"),
 });

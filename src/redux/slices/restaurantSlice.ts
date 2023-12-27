@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { RestaurantTypes } from "@/types/booking";
-
 import restaurantService from "../services/restaurantService";
+import { RestaurantTypes } from "@/types/restaurant";
 
 interface BookingState {
   restaurants: RestaurantTypes[];
@@ -29,9 +28,16 @@ export const createRestaurantBooking = createAsyncThunk("booking/createRestauran
   }
 });
 
-
-
-
+// Async thunk for getting all admins
+export const getRestaurantBookings = createAsyncThunk("restaurant/getRestaurantBookings", async (_, thunkAPI) => {
+  try {
+    const response = await restaurantService.getRestaurant();
+    return response;
+  } catch (error) {
+    console.error("Error getting all admins:", error);
+    throw error;
+  }
+});
 
 export const restaurantSlice = createSlice({
   name: "restaurant",
@@ -51,6 +57,17 @@ export const restaurantSlice = createSlice({
         state.error = action.error.message || null;
       })
 
+      .addCase(getRestaurantBookings.pending, (state) => {
+        state.loading = "pending";
+      })
+      .addCase(getRestaurantBookings.fulfilled, (state, action) => {
+        state.loading = "succeeded";
+        state.restaurants = action.payload;
+      })
+      .addCase(getRestaurantBookings.rejected, (state, action) => {
+        state.loading = "failed";
+        state.error = action.error.message || null;
+      });
   },
 });
 

@@ -6,4 +6,5 @@ export interface RestaurantTypes {
   password: string;
   phoneNumber: string;
   message?: string;
+  roomNo?: number | string;
 }
