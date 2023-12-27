@@ -4,31 +4,30 @@ import { updateBookingStatus } from "@/redux/slices/bookingSlice";
 import { ChevronDown, X } from "lucide-react";
 import React from "react";
 import { useDispatch } from "react-redux";
+import bookingService from "@/redux/services/bookingService";
 
-interface UpdateStatusModalProps {
+interface SetRoomPriceModalProps {
   showModal: boolean;
   onClose: () => void;
-  bookingId?: string;
 }
 
 // Validation schema using Yup
 const validationSchema = Yup.object({
-  status: Yup.string().required("Status is required"),
-  roomNo: Yup.number().required("Room Number is required"),
+  roomType: Yup.string().required("Room Type is required"),
+  price: Yup.number().required("Price is required"),
 });
 
-const UpdateStatusModal: React.FC<UpdateStatusModalProps> = ({ showModal, onClose, bookingId }) => {
+const UpdateRoomPrice: React.FC<SetRoomPriceModalProps> = ({ showModal, onClose }) => {
   const dispatch = useDispatch();
 
-  const handleUpdateStatus = async (values: any, { setSubmitting }: any) => {
+  const handleUpdateStatus = async (values: any) => {
     try {
-      const id = bookingId || "";
-      const bookingData = {
-        status: values.status,
-        roomNo: values.roomNo,
+      const roomPriceData = {
+        roomType: values.roomType,
+        price: values.price,
       };
 
-      await dispatch(updateBookingStatus({ bookingId: id, bookingData }) as any);
+      await bookingService.updateRoomPrice(roomPriceData);
 
       onClose();
     } catch (error) {
@@ -43,12 +42,11 @@ const UpdateStatusModal: React.FC<UpdateStatusModalProps> = ({ showModal, onClos
   };
 
   const options = [
-    { value: "", label: "Select status" },
-    { value: "booked", label: "Booked" },
-    { value: "reserved", label: "Reserved" },
-    { value: "avaialable", label: "Available" },
-    { value: "unavailable", label: "Unavailble" },
-    { value: "in use", label: "In Use" },
+    { value: "", label: "Select room type" },
+    { value: "deluxe", label: "Deluxe" },
+    { value: "luxury", label: "Luxury" },
+    { value: "king bed suite", label: "King bed suite" },
+    { value: "queen bed suite", label: "Queen bed suite" },
   ];
 
   return (
@@ -71,8 +69,8 @@ const UpdateStatusModal: React.FC<UpdateStatusModalProps> = ({ showModal, onClos
                 {/* Formik form */}
                 <Formik
                   initialValues={{
-                    status: "",
-                    roomNo: "",
+                    roomType: "",
+                    price: "",
                   }}
                   validationSchema={validationSchema}
                   onSubmit={handleUpdateStatus}
@@ -86,12 +84,12 @@ const UpdateStatusModal: React.FC<UpdateStatusModalProps> = ({ showModal, onClos
                     <span className="text-[#19202C] text-3xl font-bold ">Update Booking Status</span>
                     <div className="w-full grid gap-4 lg:gap-6 mb-6  mt-12 ">
                       <div className="flex flex-col w-full">
-                        <label htmlFor="status" className="text-[#19202C] text-2xl mb-2">
-                          Status
+                        <label htmlFor="roomType" className="text-[#19202C] text-2xl mb-2">
+                          Room Type
                         </label>
                         <Field
                           as="select"
-                          name="status"
+                          name="roomType"
                           className="
                             py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
                             block appearance-none text-xl
@@ -106,12 +104,12 @@ const UpdateStatusModal: React.FC<UpdateStatusModalProps> = ({ showModal, onClos
                         <ErrorMessage name="status" component="div" className="text-red-500 text-xl" />
                       </div>
                       <div className="flex flex-col">
-                        <label htmlFor="roomNo" className="text-[#19202C] text-2xl mb-2">
-                          Room Number
+                        <label htmlFor="price" className="text-[#19202C] text-2xl mb-2">
+                          Price
                         </label>
                         <Field
                           type="number"
-                          name="roomNo"
+                          name="price"
                           className="
                             py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
                             placeholder-gray-200::placeholder placeholder-opacity-75 text-xl
@@ -138,7 +136,7 @@ const UpdateStatusModal: React.FC<UpdateStatusModalProps> = ({ showModal, onClos
                             font-bold text-2xl px-6 focus:outline-none 
                           "
                         >
-                          Update Status
+                          Submit
                         </button>
                       </div>
                     </div>
@@ -153,4 +151,4 @@ const UpdateStatusModal: React.FC<UpdateStatusModalProps> = ({ showModal, onClos
   );
 };
 
-export default UpdateStatusModal;
+export default UpdateRoomPrice;

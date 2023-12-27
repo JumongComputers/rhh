@@ -11,6 +11,8 @@ import axios from "axios";
 import { baseApi } from "@/redux/services/authService";
 import DeleteBookingModal from "../Modals/DeleteBooking";
 import UpdateStatusModal from "../Modals/UpdateStatus";
+import SetRoomPrice from "../Modals/SetRoomPrice";
+import UpdateRoomPrice from "../Modals/UpdateRoomPrice";
 
 interface BookingTableProps {
   bookings: BookingTypes[];
@@ -70,9 +72,15 @@ const AdminList: React.FC<BookingTableProps> = ({ bookings }) => {
   const [showModal, setShowModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [showUpdateStatusModal, setShowUpdateStatusModal] = useState(false);
+  const [showRoomModal, setShowRoomModal] = useState(false);
+  const [showUpdateRoomModal, setShowUpdateRoomModal] = useState(false);
 
   const handleUpdateStatusClick = () => {
     setShowUpdateStatusModal(true);
+  };
+
+  const handleUpdateRoomClick = () => {
+    setShowUpdateRoomModal(true);
   };
 
   const [selectedBookingId, setSelectedBookingId] = useState("");
@@ -122,16 +130,30 @@ const AdminList: React.FC<BookingTableProps> = ({ bookings }) => {
               <span className="text-black font-bold">Transaction Id:</span>
               <span className="text-[#828282]">{selectedBooking?.tranxId}</span>
             </div>
+            <div className="bg-[#F2F7FF] w-[60vw] px-8 flex justify-between items-center  p-3">
+              <span className="text-black font-bold">Room Number:</span>
+              <span className="text-[#828282]">{selectedBooking?.roomNo || null}</span>
+            </div>
           </div>
 
-          <button
-            className="bg-blue-500 flex items-center justify-center text-white w-1/2 text-4xl py-2 px-4 mx-auto rounded-md my-12"
-            onClick={handleUpdateStatusClick}
-          >
-            Update Status
-          </button>
+          <div className="flex items-center justify-center gap-96 ">
+            <button
+              className="bg-blue-500 flex items-center justify-center text-white w-1/2 text-4xl py-2 px-4 mx-auto rounded-md my-12"
+              onClick={handleUpdateStatusClick}
+            >
+              Update Status
+            </button>
 
-          <UpdateStatusModal showModal={showUpdateStatusModal} onClose={() => setShowUpdateStatusModal(false)} />
+            <button
+              className="bg-blue-500 flex items-center justify-center text-white w-1/2 text-4xl py-2 px-4 mx-auto rounded-md my-12"
+              onClick={handleUpdateRoomClick}
+            >
+              Update Room Price
+            </button>
+          </div>
+
+          <UpdateStatusModal showModal={showUpdateStatusModal} bookingId={selectedBooking?._id} onClose={() => setShowUpdateStatusModal(false)} />
+          <UpdateRoomPrice showModal={showUpdateRoomModal} onClose={() => setShowUpdateRoomModal(false)} />
         </div>
       ) : (
         <div>
@@ -146,8 +168,13 @@ const AdminList: React.FC<BookingTableProps> = ({ bookings }) => {
           <div className="px-4 py-6 font-[DM Sans] hidden lg:block ">
             <div style={{ boxShadow: "2px 8px 24px rgba(12, 33, 50, 0.08)" }} className="bg-white rounded-md  ">
               <div className="p-4 w-full  overflow-x-auto ">
-                <div className="text-black text-3xl font-bold py-4 w-full pb-5 border-b border-[#E0E0E0]">
-                  <h3>Recent Bookings</h3>
+                <div className="flex justify-between items-center">
+                  <div className="text-black text-3xl font-bold py-4 w-full pb-5 border-b border-[#E0E0E0]">
+                    <h3>Recent Bookings</h3>
+                  </div>
+                  <button onClick={() => setShowRoomModal(true)} className="bg-[#0D60D8] text-white text-lg rounded-md w-[15%] px-4 py-2">
+                    + Add Room Price
+                  </button>
                 </div>
 
                 <div>
@@ -171,37 +198,37 @@ const AdminList: React.FC<BookingTableProps> = ({ bookings }) => {
                         {bookingPage &&
                           currentItems.map((item: BookingTypes) => {
                             return (
-                              <tr key={item._id} className="text-xl text-center border-b border-[#E0E0E0] ">
-                                <td className="py-3 px-12">{item.firstName}</td>
-                                <td className="py-3 px-12">{item.lastName}</td>
-                                <td className="py-3 px-12">{item.email}</td>
-                                <td className="py-3 px-12">{item.roomType}</td>
+                              <tr key={item?._id} className="text-xl text-center border-b border-[#E0E0E0] ">
+                                <td className="py-3 px-12">{item?.firstName}</td>
+                                <td className="py-3 px-12">{item?.lastName}</td>
+                                <td className="py-3 px-12">{item?.email}</td>
+                                <td className="py-3 px-12">{item?.roomType}</td>
 
                                 <td className="py-4">
-                                  {item.status === "pending" && (
+                                  {item?.status === "pending" && (
                                     <button className="text-[#F2994A] bg-[#F3EEDE] rounded-2xl font-bold py-3 px-12 text-xl">{item.status}</button>
                                   )}
-                                  {item.status === "booked" && (
+                                  {item?.status === "booked" && (
                                     <button className="text-[#0D60D8] bg-[#F5F5F5] rounded-2xl font-bold py-3 px-12 text-xl">{item.status}</button>
                                   )}
-                                  {item.status === "available" && (
+                                  {item?.status === "avaialable" && (
                                     <button className="text-[#00FF00] bg-[#00FF00] bg-opacity-10 rounded-2xl font-bold py-3 px-12 text-xl">
-                                      {item.status}
+                                      {item?.status}
                                     </button>
                                   )}
-                                  {item.status === "unavailble" && (
+                                  {item?.status === "unavailable" && (
                                     <button className="text-[#FF0000] bg-[#FF0000] bg-opacity-10 rounded-2xl font-bold py-3 px-12 text-xl">
-                                      {item.status}
+                                      {item?.status}
                                     </button>
                                   )}
-                                  {item.status === "inUse" && (
+                                  {item?.status === "in use" && (
                                     <button className="text-[#000000] bg-[#000000] bg-opacity-10 rounded-2xl font-bold py-3 px-12 text-xl">
-                                      {item.status}
+                                      {item?.status}
                                     </button>
                                   )}
-                                  {item.status === "reserved " && (
+                                  {item?.status === "reserved" && (
                                     <button className="text-[#8A2BE2] bg-[#8A2BE2] bg-opacity-10 rounded-2xl font-bold py-3 px-12 text-xl">
-                                      {item.status}
+                                      {item?.status}
                                     </button>
                                   )}
                                   {/* {item.status === "pending" ? <StatusMenu id={item._id as string} /> : null} */}
@@ -291,6 +318,7 @@ const AdminList: React.FC<BookingTableProps> = ({ bookings }) => {
               />
             </div>
           </div>
+          <SetRoomPrice showModal={showRoomModal} onClose={() => setShowRoomModal(false)} />
         </div>
       )}
     </div>
