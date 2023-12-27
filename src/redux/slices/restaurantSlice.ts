@@ -5,13 +5,13 @@ import { RestaurantTypes } from "@/types/booking";
 import restaurantService from "../services/restaurantService";
 
 interface BookingState {
-  bookings: RestaurantTypes[];
+  restaurants: RestaurantTypes[];
   loading: "idle" | "pending" | "succeeded" | "failed";
   error: string | null;
 }
 
 const initialState: BookingState = {
-  bookings: [],
+  restaurants: [],
   loading: "idle",
   error: null,
 };
@@ -44,7 +44,7 @@ export const restaurantSlice = createSlice({
       })
       .addCase(createRestaurantBooking.fulfilled, (state, action) => {
         state.loading = "succeeded";
-        state.bookings = [action.payload];
+        state.restaurants = [action.payload];
       })
       .addCase(createRestaurantBooking.rejected, (state, action) => {
         state.loading = "failed";

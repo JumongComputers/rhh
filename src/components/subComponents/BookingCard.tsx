@@ -45,7 +45,7 @@ const BookingCard: React.FC<BookingCardProps> = ({ data }) => {
 
       {/* Modal */}
       <BookingModal isOpen={isModalOpen} onRequestClose={closeModal} price={Number(data.price)} roomTypeDefault={data.name} />
-      <RestaurantModal isOpen={isModalOpen} onRequestClose={closeModal}/>
+      
     </div>
   );
 };

@@ -1,166 +1,165 @@
+import {  X } from "lucide-react";
 import React, { useState } from "react";
-import Modal from "react-modal";
-import "react-datepicker/dist/react-datepicker.css";
-import { X } from "lucide-react";
 import { useDispatch } from "react-redux";
+import { RestaurantTypes } from "@/types/booking";
+import { useFormik } from "formik";
+import { addRestaurantSchema} from "@/utils/yupValidation";
 import { createRestaurantBooking } from "@/redux/slices/restaurantSlice";
 
 
-interface RestaurantProps {
-    isOpen: boolean;
-    onRequestClose: () => void;
-    
-  }
+interface RestaurantModalProps {
+  visible: boolean;
+  onClose: () => void;
+}
+
+const RestaurantModal: React.FC<RestaurantModalProps> = ({ visible, onClose }) => {
+  const dispatch = useDispatch();
+
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+      message: ""
+    },
+    validationSchema: addRestaurantSchema,
+    onSubmit: (values) => {
+      console.log("Form submitted with values:", values);
+      dispatch(createRestaurantBooking(values as RestaurantTypes) as any);
+    },
+  });
 
 
-  const RestaurantModal: React.FC<RestaurantProps> = ({ isOpen, onRequestClose}) => {
+  if (!visible) return null;
 
-  
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [message, setMessage] = useState("");
-    
-  
-    const dispatch = useDispatch();
-  
-    // Set default check-out date to be one day greater than the default check-in date
-   
-  
-   
-  
-    const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY || "";
-  
-    const handlRestaurantSubmission = (restaurantData: any) => {
-      const restaurantbookingFormData = {
-        firstName,
-        lastName,
-        email,
-        phoneNumber,
-        message
-      
-      };
-  
-      dispatch(createRestaurantBooking({ ...restaurantbookingFormData }) as any);
-  
-      // onRequestClose();
-    };
-  
-    
-  
-    const isFormValid = () => {
-      // Check if all input fields are filled and checkout date is greater than check-in date
-      return (
-        firstName.trim() !== "" &&
-        lastName.trim() !== "" &&
-        email.trim() !== "" &&
-        phoneNumber.trim() !== "" &&
-        message.trim() !== ""
-      );
-    };
-  
-  
-  
-    return (
-      <Modal
-        isOpen={isOpen}
-        onRequestClose={onRequestClose}
-        contentLabel="Booking Modal"
-        className="absolute top-1/2 left-1/2 z-20 transform overflow-y-auto -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-4 w-full h-[60vh] lg:h-[80vh] max-w-xl md:max-w-4xl"
-        overlayClassName="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center"
-      >
-        <div className="w-full space-y-8 relative">
-          <div className="pb-8">
-            <X className="absolute top-2 right-2 cursor-pointer text-gray-500 hover:text-gray-700" size={35} onClick={onRequestClose} />
-          </div>
-          <div className="bg-white p-4 flex flex-col gap-4">
-            {/* Your form inputs */}
-            <div className="mb-4">
-              <label htmlFor="firstName" className="block text-2xl font-medium text-gray-700">
-                First Name
-              </label>
-              <input
-                type="text"
-                name="firstName"
-                className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
-                placeholder-gray-200::placeholder placeholder-opacity-75
-                border focus:border-[#0D60D8] text-xl"
-                placeholder="Enter your first name"
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-            </div>
-  
-            <div className="mb-4">
-              <label htmlFor="lastName" className="block text-2xl font-medium text-gray-700">
-                Last Name
-              </label>
-              <input
-                type="text"
-                name="lastName"
-                className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
-                placeholder-gray-200::placeholder placeholder-opacity-75
-                border focus:border-[#0D60D8] text-xl"
-                placeholder="Enter your last name"
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </div>
-  
-            <div className="mb-4">
-              <label htmlFor="email" className="block text-2xl font-medium text-gray-700">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
-                placeholder-gray-200::placeholder placeholder-opacity-75
-                border focus:border-[#0D60D8] text-xl"
-                placeholder="Enter your email"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-  
-            <div className="mb-4">
-              <label htmlFor="phoneNumber" className="block text-2xl font-medium text-gray-700">
-                Phone Number
-              </label>
-              <input
-                type="tel"
-                name="phoneNumber"
-                className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
-                placeholder-gray-200::placeholder placeholder-opacity-75
-                border focus:border-[#0D60D8] text-xl"
-                placeholder="Enter your phone number"
-                onChange={(e) => setPhoneNumber(e.target.value)}
-              />
-            </div>
-  
-            <div className="mb-4">
-              <label htmlFor="message" className="block text-2xl font-medium text-gray-700">
-                Message
-              </label>
-              <textarea
-                name="message"
-                className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
-                placeholder-gray-200::placeholder placeholder-opacity-75
-                border focus:border-[#0D60D8] text-xl"
-                onChange={(e) => setMessage(e.target.value)}
-                value={message}
-                readOnly
-              />
-            </div>
-  
-            </div>
-  
-          
-  
-            
-          </div>
-        
-      </Modal>
-    );
+  const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
+    if ((e.target as HTMLElement).id === "container") onClose();
   };
-  
-  export default RestaurantModal;
-  
+
+  return (
+    <>
+      <div id="container" onClick={handleClose} className="fixed inset-0 flex items-center bg-black bg-opacity-50 justify-center z-20">
+        <div className="bg-white w-full max-w-4xl rounded-md shadow-lg overflow-y-auto">
+          <div className="flex justify-end pt-4 pr-4">
+            <button onClick={() => onClose()}>
+              <X />
+            </button>
+          </div>
+          <div className="overflow-y-auto max-h-[520px]">
+            <div className="flex flex-col px-6 items-start w-full">
+              <div className="flex flex-col items-start lg:place-items-start w-full md:py-8 ">
+                <form onSubmit={formik.handleSubmit} className="flex flex-col text-start w-full mb-6 lg:mb-0 pb-8">
+                  <span className="text-[#19202C] text-4xl font-bold">Book restaurant</span>
+                  <div className="w-full grid gap-4 lg:gap-6 mb-6 mt-12 ">
+                    
+                    <div className="flex flex-col">
+                      <label htmlFor="firstname" className="text-[#19202C] text-2xl mb-2">
+                        First name
+                      </label>
+                      <input
+                        name="firstName"
+                        value={formik.values.firstName}
+                        onChange={formik.handleChange}
+                        type="text"
+                        className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
+                          placeholder-gray-200::placeholder placeholder-opacity-75
+                          border-2 focus:border-[#0D60D8] text-xl"
+                        placeholder="Enter first name"
+                      />
+                      {formik.errors.firstName && formik.touched.firstName && <div className="text-red-500">{formik.errors.firstName}</div>}
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <label htmlFor="lastname" className="text-[#19202C] text-2xl mb-2">
+                        Last name
+                      </label>
+                      <input
+                        name="lastName"
+                        value={formik.values.lastName}
+                        onChange={formik.handleChange}
+                        type="text"
+                        className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
+                          placeholder-gray-200::placeholder placeholder-opacity-75
+                          border-2 focus:border-[#0D60D8] text-xl"
+                        placeholder="Enter last name"
+                      />
+                      {formik.errors.lastName && formik.touched.lastName && <div className="text-red-500">{formik.errors.lastName}</div>}
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <label htmlFor="email" className="text-[#19202C] text-2xl mb-2">
+                        Email
+                      </label>
+                      <input
+                        name="email"
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        type="text"
+                        className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
+                          placeholder-gray-200::placeholder placeholder-opacity-75
+                          border-2 focus:border-[#0D60D8] text-xl"
+                        placeholder="Enter email"
+                      />
+                      {formik.errors.email && formik.touched.email && <div className="text-red-500">{formik.errors.email}</div>}
+                    </div>
+                    
+                    <div className="flex flex-col w-full">
+                      <label htmlFor="phoneNumber" className="text-[#19202C] text-2xl mb-2">
+                        Phone number
+                      </label>
+                      <input
+                        name="phoneNumber"
+                        value={formik.values.phoneNumber}
+                        onChange={formik.handleChange}
+                        type="text"
+                        className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
+                          placeholder-gray-200::placeholder placeholder-opacity-75
+                          border-2 focus:border-[#0D60D8] text-xl"
+                        placeholder="Enter phone number"
+                      />
+                      {formik.errors.phoneNumber && formik.touched.phoneNumber && <div className="text-red-500">{formik.errors.phoneNumber}</div>}
+                    </div>
+                    <div className="flex flex-col">
+                      <label htmlFor="message" className="text-[#19202C] text-2xl mb-2">
+                        message
+                      </label>
+                      <textarea
+                        name="message"
+                        value={formik.values.message}
+                        onChange={formik.handleChange}
+                        
+                        className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
+                          placeholder-gray-200::placeholder placeholder-opacity-75
+                          border-2 focus:border-[#0D60D8] text-xl"
+                        placeholder="Enter The Details of your booking here"
+                      />
+                      {formik.errors.message && formik.touched.message && <div className="text-red-500">{formik.errors.message}</div>}
+                    </div>
+                    <div className="flex justify-between items-center pt-8 ">
+                      <button
+                        onClick={() => onClose()}
+                        className="border border-[#0D60D8] py-4 text-[#0D60D8] rounded-md
+                          font-bold text-2xl focus:outline-none px-12 bg-white"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        // onClick={onSubmit}
+                        className="bg-[#0D60D8] py-4 text-white rounded-md
+                          font-bold text-2xl px-6 focus:outline-none"
+                      >
+                        Book Restaurant
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default RestaurantModal;
