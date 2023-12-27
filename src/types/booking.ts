@@ -14,6 +14,14 @@ export interface BookingTypes {
   tranxId?: string;
   status?: string;
   lenght?: number;
+}
+
+export interface RestaurantTypes{
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  message: string;
   roomNo?: number | string;
 }
 

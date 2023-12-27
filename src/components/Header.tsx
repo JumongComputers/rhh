@@ -3,10 +3,14 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useRouter } from "next/router";
 import WhatsAppChat from "./Whatsapp/Whatsapp";
+import RestaurantModal from "./Modals/RestaurantModal";
 
 const Header: React.FC = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
+  const [isModalOpen, setModalOpen] = useState(false);
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
@@ -25,12 +29,13 @@ const Header: React.FC = () => {
         <i className="fa-regular fa-envelope "></i>
           <p>receptionist@risehighhotel.com</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-1 items-center">
         <i className="fa-solid fa-phone py-1"></i>
-        <p>09076381843</p>
+        <p>09050000770</p>
+        <p className="hidden md:block">09050000775</p>
         </div>
 
-        <div className=" flex gap-3">
+        <div className="  hidden md:flex gap-3 lg:flex">
        <div className="flex  gap-3 text-3xl">
             <Link href="#"><i className="fa-brands fa-square-facebook text-2xl md:text-3xl"></i></Link>
             <Link href="#"><i className="fa-brands fa-square-twitter text-2xl md:text-3xl"></i></Link>
@@ -50,7 +55,7 @@ const Header: React.FC = () => {
       <nav className="bg-[#2c2c2c] opacity-90 top-0 left-0 sticky lg:relative z-10 flex items-center px-[8vw] py-8 justify-between gap-4">
 
         <Link href="/">
-          <img src="/rise-hotel.svg" alt="Logo" className="lg:h-[80px] h-[40px] rounded-md" />
+          <img src="/rise-high-hotel-logo white.svg" alt="Logo" className="lg:h-[80px] h-[40px] rounded-md" />
         </Link>
         <ul className={`lg:flex text-white gap-8 font-medium text-3xl ${isSidebarOpen ? "hidden" : "hidden md:flex"}`}>
           <li className={`hover:text-blue-400 ${router.pathname === "/" ? "text-blue-400" : ""}`}>
@@ -65,9 +70,9 @@ const Header: React.FC = () => {
           <li className={`hover:text-blue-400 ${router.pathname === "/contact" ? "text-blue-400" : ""}`}>
             <Link href="/contact">Contact Us</Link>
           </li>
-          {/* <li className={`hover:text-blue-400 ${router.pathname === "/auth/login" ? "text-blue-400" : ""}`}>
-            <Link href="/auth/login">Sign in</Link>
-          </li> */}
+          <li className={`hover:text-blue-400`}>
+                <button onClick={openModal}>Book Restaurant</button>
+          </li>
         </ul>
         <div className="md:hidden" onClick={toggleSidebar}>
           <Menu size={24} color="white" />
@@ -94,13 +99,14 @@ const Header: React.FC = () => {
               <li className={`hover:text-blue-400 ${router.pathname === "/contact" ? "text-blue-400" : ""}`}>
                 <Link href="/contact">Contact Us</Link>
               </li>
-              {/* <li className={`hover:text-blue-400 ${router.pathname === "/auth/login" ? "text-blue-400" : ""}`}>
-                <Link href="/auth/login">Sign in</Link>
-              </li> */}
+              <li className={`hover:text-blue-400`}>
+                <button onClick={openModal}>Book Restaurant</button>
+              </li>
             </ul>
           </div>
         </div>
       )}
+      <RestaurantModal visible={isModalOpen} onClose={closeModal}/>
     </>
   );
 

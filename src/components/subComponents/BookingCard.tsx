@@ -2,6 +2,7 @@ import { Booking } from "@/data/bookingData";
 import BookingModal from "../Modals/BookingModal";
 import { useState } from "react";
 import { Camera } from "lucide-react";
+import RestaurantModal from "../Modals/RestaurantModal";
 
 interface BookingCardProps {
   data: Booking;
@@ -44,6 +45,7 @@ const BookingCard: React.FC<BookingCardProps> = ({ data }) => {
 
       {/* Modal */}
       <BookingModal isOpen={isModalOpen} onRequestClose={closeModal} price={Number(data.price)} roomTypeDefault={data.name} />
+      
     </div>
   );
 };
