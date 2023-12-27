@@ -71,7 +71,7 @@ const Header: React.FC = () => {
             <Link href="/contact">Contact Us</Link>
           </li>
           <li className={`hover:text-blue-400`}>
-                <button onClick={openModal}>Book Restaurant</button>
+                <button onClick={()=>openModal}>Book Restaurant</button>
           </li>
         </ul>
         <div className="md:hidden" onClick={toggleSidebar}>
@@ -100,7 +100,7 @@ const Header: React.FC = () => {
                 <Link href="/contact">Contact Us</Link>
               </li>
               <li className={`hover:text-blue-400`}>
-                <button onClick={openModal}>Book Restaurant</button>
+                <button onClick={()=>openModal}>Book Restaurant</button>
               </li>
             </ul>
           </div>
