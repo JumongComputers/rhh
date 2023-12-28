@@ -1,4 +1,4 @@
-import { BookingTypes, RoomPrice } from "@/types/booking";
+import { BookingTypes, OverviewTypes, RoomPrice } from "@/types/booking";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -23,6 +23,12 @@ const bookingService = {
     const response = await axios.get(`${baseApi}/booking`);
     console.log("server response:", response);
     return response.data;
+  },
+
+  getOverview: async (): Promise<OverviewTypes> => {
+    const response = await axios.get(`${baseApi}/booking/analytics`);
+    console.log("overview response:", response);
+    return response.data.data.data;
   },
 
   deleteBooking: async (bookingId: string): Promise<void> => {

@@ -63,7 +63,7 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
             <div className="flex flex-col px-6 items-start w-full">
               <div className="flex flex-col items-start lg:place-items-start w-full md:py-8 ">
                 <form onSubmit={formik.handleSubmit} className="flex flex-col text-start w-full mb-6 lg:mb-0 pb-8">
-                  <span className="text-[#19202C] text-4xl font-bold">Add Admin</span>
+                  <span className="text-[#19202C] text-4xl font-bold">Add Staff</span>
                   <div className="w-full grid gap-4 lg:gap-6 mb-6 mt-12 ">
                     <div className="flex flex-col w-full">
                       <label htmlFor="role" className="text-[#19202C] text-2xl mb-2">

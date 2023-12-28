@@ -1,16 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import bookingService from "../services/bookingService";
-import { BookingTypes } from "@/types/booking";
+import { BookingTypes, OverviewTypes } from "@/types/booking";
 import { toast } from "react-toastify";
 
 interface BookingState {
   bookings: BookingTypes[];
+  overviews: OverviewTypes[];
   loading: "idle" | "pending" | "succeeded" | "failed";
   error: string | null;
 }
 
 const initialState: BookingState = {
   bookings: [],
+  overviews: [],
   loading: "idle",
   error: null,
 };
@@ -31,6 +33,16 @@ export const createBooking = createAsyncThunk("booking/createBooking", async (bo
 export const getAllBookings = createAsyncThunk("booking/getAllBookings", async (_, thunkAPI) => {
   try {
     const response = await bookingService.getAllBookings();
+    return response;
+  } catch (error) {
+    console.error("Error fetching all bookings:", error);
+    throw error;
+  }
+});
+
+export const getOverview = createAsyncThunk("booking/getOverview", async (_, thunkAPI) => {
+  try {
+    const response = await bookingService.getOverview();
     return response;
   } catch (error) {
     console.error("Error fetching all bookings:", error);
@@ -87,6 +99,18 @@ export const bookingSlice = createSlice({
         state.bookings = [action.payload];
       })
       .addCase(getAllBookings.rejected, (state, action) => {
+        state.loading = "failed";
+        state.error = action.error.message || null;
+      })
+
+      .addCase(getOverview.pending, (state) => {
+        state.loading = "pending";
+      })
+      .addCase(getOverview.fulfilled, (state, action) => {
+        state.loading = "succeeded";
+        state.overviews = [action.payload];
+      })
+      .addCase(getOverview.rejected, (state, action) => {
         state.loading = "failed";
         state.error = action.error.message || null;
       })

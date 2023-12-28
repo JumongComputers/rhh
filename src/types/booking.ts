@@ -17,6 +17,12 @@ export interface BookingTypes {
   roomNo?: number | string;
 }
 
+export interface OverviewTypes {
+  completed: number | string;
+  pending: number | string;
+  total: number | string;
+}
+
 // export interface RestaurantTypes {
 //   firstName: string;
 //   lastName: string;
