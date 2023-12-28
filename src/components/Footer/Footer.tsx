@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
             <h4 className='text-2xl lg:text-3xl my-8 text-orange-200'>Contact</h4>
                 <div className="flex items-center gap-4">
                     <i className="fa-solid fa-location"></i>
-                    <p>30 Adelabu Street Surulere, Lagos Nigeria</p>
+                    <p>Unique Community, 1 Alakaloko Community, <br />off Sekoni Street, Olomore, Abeokuta, Ogun State</p>
                 </div>
 
                 
