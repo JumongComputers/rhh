@@ -13,6 +13,7 @@ const authService = {
       const accessToken = response.data.data.data.accessToken;
       localStorage.setItem("accessToken", accessToken);
       sessionStorage.setItem("firstName", response.data.data.data.firstName);
+      sessionStorage.setItem("role", response.data.data.data.role);
 
       return response.data;
     } catch (error: any) {
