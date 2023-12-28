@@ -16,9 +16,10 @@ import UpdateRoomPrice from "../Modals/UpdateRoomPrice";
 
 interface BookingTableProps {
   bookings: BookingTypes[];
+  overviews: any;
 }
 
-const AdminList: React.FC<BookingTableProps> = ({ bookings }) => {
+const AdminList: React.FC<BookingTableProps> = ({ bookings, overviews }) => {
   const [search, setSearch] = useState<string>("");
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -164,7 +165,7 @@ const AdminList: React.FC<BookingTableProps> = ({ bookings }) => {
             </div>
           </div>
           <HomeHeader />
-          <Overview />
+          <Overview overviews={overviews} />
           <div className="px-4 py-6 font-[DM Sans] hidden lg:block ">
             <div style={{ boxShadow: "2px 8px 24px rgba(12, 33, 50, 0.08)" }} className="bg-white rounded-md  ">
               <div className="p-4 w-full  overflow-x-auto ">

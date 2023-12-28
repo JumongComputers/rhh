@@ -3,11 +3,11 @@ import React, { ReactNode } from "react";
 interface InfoBoxProps {
   title: string;
   count: number;
-  icon: ReactNode;
+  // icon: ReactNode;
   // text: ReactNode;
 }
 
-const InfoBox: React.FC<InfoBoxProps> = ({ title, count, icon }) => {
+const InfoBox: React.FC<InfoBoxProps> = ({ title, count }) => {
   return (
     <div
       style={{
@@ -17,7 +17,7 @@ const InfoBox: React.FC<InfoBoxProps> = ({ title, count, icon }) => {
       className="bg-white w-full  translate-y-0 rounded-xl"
     >
       <div className="p-5">
-        <span>{icon}</span>
+        {/* <span>{icon}</span> */}
         <span className="font-bold text-[#828282] font-[DM Sans] text-3xl">{title}</span>
         <div className="flex justify-between items-center mt-2">
           <span className="font-bold text-[#19202C] font-[DM Sans] text-4xl">{count}</span>
