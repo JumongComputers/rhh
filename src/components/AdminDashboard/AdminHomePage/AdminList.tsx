@@ -137,21 +137,19 @@ const AdminList: React.FC<BookingTableProps> = ({ bookings, overviews }) => {
             </div>
           </div>
 
-          <div className="flex items-center justify-center gap-96 ">
-            <button
-              className="bg-blue-500 flex items-center justify-center text-white w-1/2 text-4xl py-2 px-4 mx-auto rounded-md my-12"
-              onClick={handleUpdateStatusClick}
-            >
-              Update Status
-            </button>
+          <button
+            className="bg-blue-500 flex items-center justify-center text-white w-1/2 text-4xl py-2 px-4 mx-auto rounded-md my-12"
+            onClick={handleUpdateStatusClick}
+          >
+            Update Status
+          </button>
 
-            <button
+          {/* <button
               className="bg-blue-500 flex items-center justify-center text-white w-1/2 text-4xl py-2 px-4 mx-auto rounded-md my-12"
               onClick={handleUpdateRoomClick}
             >
               Update Room Price
-            </button>
-          </div>
+            </button> */}
 
           <UpdateStatusModal showModal={showUpdateStatusModal} bookingId={selectedBooking?._id} onClose={() => setShowUpdateStatusModal(false)} />
           <UpdateRoomPrice showModal={showUpdateRoomModal} onClose={() => setShowUpdateRoomModal(false)} />

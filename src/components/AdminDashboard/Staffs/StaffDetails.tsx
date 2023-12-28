@@ -94,20 +94,28 @@ const StaffDetails: React.FC<StaffDetailsProps> = ({ staffs }) => {
                                 setSelectedAdminId(_id as string);
                                 setShowEdit(true);
                               }}
+                              disabled={role === "admin"}
+                              className={`hover:text-[#1a183e] ${role === "admin" ? "cursor-not-allowed  opacity-50" : ""}`}
                             >
                               <Pencil />
                             </button>
                             <span className="font-normal text-xl">Edit</span>
                           </td>
                           <td className="py-3 text-[#FF0802] px-6">
-                            <button
-                              onClick={() => {
-                                setSelectedAdminId(_id as string);
-                                setShowModal(true);
-                              }}
-                            >
-                              Delete
-                            </button>
+                            {role !== "admin" ? (
+                              <button
+                                onClick={() => {
+                                  setSelectedAdminId(_id as string);
+                                  setShowModal(true);
+                                }}
+                              >
+                                Delete
+                              </button>
+                            ) : (
+                              <button disabled className="cursor-not-allowed opacity-50">
+                                Delete
+                              </button>
+                            )}
                           </td>
                         </tr>
                       </Fragment>
