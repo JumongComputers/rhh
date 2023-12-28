@@ -4,6 +4,7 @@ import { updateBookingStatus } from "@/redux/slices/bookingSlice";
 import { ChevronDown, X } from "lucide-react";
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 interface UpdateStatusModalProps {
   showModal: boolean;
@@ -19,6 +20,7 @@ const validationSchema = Yup.object({
 
 const UpdateStatusModal: React.FC<UpdateStatusModalProps> = ({ showModal, onClose, bookingId }) => {
   const dispatch = useDispatch();
+  const isLoading = useSelector((state: { booking: { loading: string } }) => state.booking.loading);
 
   const handleUpdateStatus = async (values: any, { setSubmitting }: any) => {
     try {
@@ -138,7 +140,7 @@ const UpdateStatusModal: React.FC<UpdateStatusModalProps> = ({ showModal, onClos
                             font-bold text-2xl px-6 focus:outline-none 
                           "
                         >
-                          Update Status
+                          {isLoading === "pending" ? "Loading..." : "Update Status"}
                         </button>
                       </div>
                     </div>
