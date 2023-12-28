@@ -1,8 +1,13 @@
 import React, { Fragment, useState } from "react";
-import AddAdminModal from "../Modals/AddAdminModal";
+import SetRoomPrice from "../Modals/SetRoomPrice";
 
 const HomeHeader: React.FC = () => {
-  const [showModal, setShowModal] = useState(false);
+  let name: any;
+  if (typeof window !== "undefined") {
+    name = sessionStorage.getItem("firstName");
+  }
+
+  const [showRoomModal, setShowRoomModal] = useState(false);
 
   return (
     <Fragment>
@@ -10,14 +15,14 @@ const HomeHeader: React.FC = () => {
         <div className="flex justify-between items-center">
           <h3 className="text-[#19202C] font-bold font-outfit text-6xl ">
             <span>Welcome back </span>
-            <span>John</span>
+            <span>{name}</span>
           </h3>
-          <button onClick={() => setShowModal(true)} className="bg-[#0D60D8] text-white text-lg rounded-md px-4 py-2">
-            + Add Admin
+          <button onClick={() => setShowRoomModal(true)} className="bg-[#0D60D8] text-white text-lg rounded-md  px-4 py-2">
+            + Add Room Price
           </button>
         </div>
       </div>
-      <AddAdminModal visible={showModal} onClose={() => setShowModal(false)} />
+      <SetRoomPrice showModal={showRoomModal} onClose={() => setShowRoomModal(false)} />
     </Fragment>
   );
 };

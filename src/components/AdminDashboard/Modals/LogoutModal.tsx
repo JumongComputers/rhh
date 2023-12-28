@@ -18,6 +18,7 @@ const LogoutModel: React.FC<LogoutModelProps> = ({ visible, onClose, children })
 
   const logout = async () => {
     localStorage.removeItem("accessToken");
+    sessionStorage.removeItem("firstName");
     router.push("/");
   };
 

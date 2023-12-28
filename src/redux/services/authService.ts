@@ -8,9 +8,11 @@ const authService = {
   login: async (loginData: LoginTypes): Promise<LoginTypes> => {
     try {
       const response = await axios.post(`${baseApi}/users/login`, loginData);
+      console.log("okayres:", response);
 
       const accessToken = response.data.data.data.accessToken;
       localStorage.setItem("accessToken", accessToken);
+      sessionStorage.setItem("firstName", response.data.data.data.firstName);
 
       return response.data;
     } catch (error: any) {
