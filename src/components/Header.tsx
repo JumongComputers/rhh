@@ -30,8 +30,8 @@ const Header: React.FC = () => {
           </div>
           <div className="flex gap-1 items-center">
             <i className="fa-solid fa-phone py-1"></i>
-            <p>09050000770</p>
-            <p className="hidden md:block">09050000775</p>
+            <span className="md:after:content-[]">09050000770 </span> 
+            <span className="hidden md:block md:ml-4">09050000775</span>
           </div>
 
           <div className="  hidden md:flex gap-3 lg:flex">
