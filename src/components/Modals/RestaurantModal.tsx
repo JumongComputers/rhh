@@ -5,6 +5,7 @@ import { createRestaurantBooking } from "@/redux/slices/restaurantSlice";
 import { RestaurantTypes } from "@/types/restaurant";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { addRestaurantSchema } from "@/utils/yupValidation";
+import { useSelector } from "react-redux";
 
 interface RestaurantModalProps {
   visible: boolean;
@@ -12,6 +13,7 @@ interface RestaurantModalProps {
 }
 
 const RestaurantModal: React.FC<RestaurantModalProps> = ({ visible, onClose }) => {
+  const isLoading = useSelector((state: { restaurant: { loading: string } }) => state.restaurant.loading);
   const dispatch = useDispatch();
 
   if (!visible) return null;
@@ -35,7 +37,7 @@ const RestaurantModal: React.FC<RestaurantModalProps> = ({ visible, onClose }) =
           onSubmit={(values: any) => {
             console.log("Form submitted with values:", values);
             dispatch(createRestaurantBooking(values as RestaurantTypes) as any);
-            onClose();
+            // onClose();
           }}
         >
           <Form>
@@ -130,7 +132,7 @@ const RestaurantModal: React.FC<RestaurantModalProps> = ({ visible, onClose }) =
                             Cancel
                           </button>
                           <button type="submit" className="bg-[#0D60D8] py-4 text-white rounded-md font-bold text-2xl px-6 focus:outline-none">
-                            Book Restaurant
+                            {isLoading === "pending" ? "Loading..." : "Book Restaurant"}
                           </button>
                         </div>
                       </div>

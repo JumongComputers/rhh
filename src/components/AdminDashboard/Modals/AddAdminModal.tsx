@@ -5,6 +5,7 @@ import { addAdmin } from "@/redux/slices/adminSlice";
 import { AddAdminTypes } from "@/types/admin";
 import { useFormik } from "formik";
 import { adminValidationSchema } from "@/utils/yupValidation";
+import { useSelector } from "react-redux";
 
 interface AddAdminModalProps {
   visible: boolean;
@@ -12,6 +13,7 @@ interface AddAdminModalProps {
 }
 
 const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
+  const isLoading = useSelector((state: { admin: { loading: string } }) => state.admin.loading);
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -188,7 +190,7 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                         className="bg-[#0D60D8] py-4 text-white rounded-md
                           font-bold text-2xl px-6 focus:outline-none"
                       >
-                        Add Admin
+                        {isLoading === "pending" ? "Loading..." : " Add Admin"}
                       </button>
                     </div>
                   </div>

@@ -228,7 +228,7 @@ const EditAdminModal: React.FC<EditAdminModalProps> = ({ visible, onClose, id })
                     font-bold text-2xl px-6 focus:outline-none 
                     "
                       >
-                        Update Admin
+                        {loading === "pending" ? "Loading..." : "Update Admin"}
                       </button>
                     </div>
                   </div>
