@@ -168,13 +168,8 @@ const AdminList: React.FC<BookingTableProps> = ({ bookings }) => {
           <div className="px-4 py-6 font-[DM Sans] hidden lg:block ">
             <div style={{ boxShadow: "2px 8px 24px rgba(12, 33, 50, 0.08)" }} className="bg-white rounded-md  ">
               <div className="p-4 w-full  overflow-x-auto ">
-                <div className="flex justify-between items-center">
-                  <div className="text-black text-3xl font-bold py-4 w-full pb-5 border-b border-[#E0E0E0]">
-                    <h3>Recent Bookings</h3>
-                  </div>
-                  <button onClick={() => setShowRoomModal(true)} className="bg-[#0D60D8] text-white text-lg rounded-md w-[15%] px-4 py-2">
-                    + Add Room Price
-                  </button>
+                <div className="text-black text-3xl font-bold py-4 w-full pb-5 border-b border-[#E0E0E0]">
+                  <h3>Recent Bookings</h3>
                 </div>
 
                 <div>
@@ -318,7 +313,6 @@ const AdminList: React.FC<BookingTableProps> = ({ bookings }) => {
               />
             </div>
           </div>
-          <SetRoomPrice showModal={showRoomModal} onClose={() => setShowRoomModal(false)} />
         </div>
       )}
     </div>
