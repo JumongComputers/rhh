@@ -190,7 +190,7 @@ const AddAdminModal: React.FC<AddAdminModalProps> = ({ visible, onClose }) => {
                         className="bg-[#0D60D8] py-4 text-white rounded-md
                           font-bold text-2xl px-6 focus:outline-none"
                       >
-                        {isLoading === "pending" ? "Loading..." : " Add Admin"}
+                        {isLoading === "pending" ? "Loading..." : " Add Staff"}
                       </button>
                     </div>
                   </div>
