@@ -74,10 +74,12 @@ export const adminSlice = createSlice({
       .addCase(addAdmin.fulfilled, (state, action) => {
         state.loading = "succeeded";
         state.admins = [action.payload];
+        toast.success("Staff added");
       })
       .addCase(addAdmin.rejected, (state, action) => {
         state.loading = "failed";
         state.error = action.error.message || null;
+        toast.error("Failed to add staff");
       })
 
       .addCase(getAllAdmin.pending, (state) => {

@@ -14,7 +14,23 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ children }) => {
 
   const [showModel, setShowModel] = useState(false);
 
-  const filteredSidebarData = sidebarData;
+  let role: any;
+  if (typeof window !== "undefined") {
+    role = sessionStorage.getItem("role");
+  }
+
+  const filteredSidebarData = sidebarData.filter((item) => {
+    if (role === "admin" || role === "manager") {
+      // Show all sidebar items for "admin and manager"
+      return true;
+    } else if (role === "receptionist") {
+      return item.title === "Booking" || item.title === "Restaurant";
+    } else {
+      return item.title !== "Staffs";
+    }
+  });
+
+  // const filteredSidebarData = sidebarData;
 
   return (
     <div className="">
