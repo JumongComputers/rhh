@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import  { IBooking } from "../../data/bookingData";
+import  bookingData, { IBooking } from "../../data/bookingData";
 import BookingCard from "../subComponents/BookingCard";
 import axios from "axios";
 import { baseApi } from "../../redux/services/authService";
 const BookRooms: React.FC = () => {
 
 
-const[roomPrices, setRoomPrices]  = useState<IBooking[]>([])
+const[roomPrices, setRoomPrices]  = useState<IBooking[]>(bookingData)
 
 
     const fetchRoomPrices = async () => {
