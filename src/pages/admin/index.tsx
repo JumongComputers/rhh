@@ -1,3 +1,4 @@
+import React from "react";
 import AdminList from "@/components/AdminDashboard/AdminHomePage/AdminList";
 import Layout from "@/components/Layout";
 import { getAllBookings, getOverview } from "@/redux/slices/bookingSlice";

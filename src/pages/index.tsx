@@ -1,9 +1,11 @@
-import AboutHero from "@/components/LandingPage/AboutHero";
-import BookRooms from "@/components/LandingPage/BookRooms";
-import Grid from "@/components/LandingPage/Grid/Grid";
-import Hero from "@/components/LandingPage/Hero";
-import Layout from "@/components/Layout";
+import React from "react";
+import AboutHero from "../components/LandingPage/AboutHero";
+import BookRooms from "../components/LandingPage/BookRooms";
+import Grid from "../components/LandingPage/Grid/Grid";
+import Hero from '../components/LandingPage/Hero'
+
 import { GetStaticProps } from "next";
+import Layout from "../components/Layout";
 
 type Resource = {
   asset_id: string;
@@ -24,7 +26,9 @@ type HomeProps = {
 
 const Home: React.FC<HomeProps> = ({ data }) => {
   return (
-    <Layout customClass="min-h-screen w-full max-w-full">
+  
+
+     <Layout customClass="min-h-screen w-full max-w-full">
       <Hero />
       <AboutHero />
         <BookRooms />
@@ -32,6 +36,8 @@ const Home: React.FC<HomeProps> = ({ data }) => {
 
     
     </Layout>
+
+  
   );
 };
 
@@ -44,7 +50,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
     })
       .then((res) => res.json())
       .catch((err) => {
-        throw new Error("Failed to fetch data", err);
+        throw new Error(`Failed to fetch data, ${err.message}`);
       });
     //  console.log(response, 'response data');
 

@@ -2,8 +2,9 @@ import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { NextPage } from 'next';
 import { motion } from "framer-motion"
-import SectionWrapper from '@/components/SectionWrapper';
+
 import Image from 'next/image';
+import SectionWrapper from '../../SectionWrapper';
 // import { Camera } from "lucide-react";
 
 type Resource = {

@@ -1,6 +1,8 @@
+import React from "react";
 import { motion ,AnimatePresence} from "framer-motion"
-import SectionWrapper from "@/components/SectionWrapper";
+
 import Link from "next/link";
+import SectionWrapper from "../SectionWrapper";
 
 const AboutHero: React.FC = () => {
   return (

@@ -1,16 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import bookingData, { Booking } from "@/data/bookingData";
+import  { IBooking } from "../../data/bookingData";
 import BookingCard from "../subComponents/BookingCard";
-
+import axios from "axios";
+import { baseApi } from "../../redux/services/authService";
 const BookRooms: React.FC = () => {
+
+
+const[roomPrices, setRoomPrices]  = useState<IBooking[]>([])
+
+
+    const fetchRoomPrices = async () => {
+      
+    try {
+      const {data} = await axios.get(`${baseApi }/booking/room-prices`);
+      setRoomPrices(data.data.data)
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
   useEffect(() => {
+    fetchRoomPrices()
     AOS.init({
       duration: 1000,
       offset: 200,
       easing: "ease-in-out",
     });
+    
   }, []);
 
   return (
@@ -34,11 +51,11 @@ const BookRooms: React.FC = () => {
         </div>
 
         <div className="grid lg:grid-cols-4 grid-cols-1 gap-8 lg:gap-12 lg:pb-12" data-aos="fade-up" data-aos-duration="1000">
-          {bookingData.map((data: Booking, index: number) => (
+          {roomPrices && roomPrices.map((room: IBooking, index: number) => (
             <div key={index} data-aos="fade-up" data-aos-duration="1000">
-              <BookingCard data={data} />
+              <BookingCard data={room} />
             </div>
-          ))}
+          ))  }
         </div>
       </div>
     </div>
