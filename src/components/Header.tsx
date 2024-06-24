@@ -71,7 +71,7 @@ const Header: React.FC = () => {
             <Link href="#rooms">Rooms</Link>
           </li>
           <li className={`hover:text-blue-400 ${router.pathname === "/contact" ? "text-blue-400" : ""}`}>
-            <Link href="/contact">Contact Us</Link>
+            <Link href="#contact">Contact Us</Link>
           </li>
           <li className={`hover:text-blue-400`}>
             <button onClick={openModal}>Book Restaurant</button>
@@ -100,7 +100,7 @@ const Header: React.FC = () => {
                 <Link href="#rooms">Rooms</Link>
               </li>
               <li className={`hover:text-blue-400 ${router.pathname === "/contact" ? "text-blue-400" : ""}`}>
-                <Link href="/contact">Contact Us</Link>
+                <Link href="#contact">Contact Us</Link>
               </li>
               <li className={`hover:text-blue-400`}>
                 <button onClick={openModal}>Book Restaurant</button>

@@ -76,7 +76,7 @@ const RestaurantDetails: React.FC<StaffDetailsProps> = ({ restaurant }) => {
                 <input
                   type="search"
                   name="search"
-                  placeholder="Search staff"
+                  placeholder="Search Restaurant Booking"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   style={{ boxShadow: "0px 9px 17px rgba(0, 0, 0, 0.07)" }}
@@ -156,8 +156,8 @@ const RestaurantDetails: React.FC<StaffDetailsProps> = ({ restaurant }) => {
                       }}
                     >
                       <div className="flex flex-col items-center justify-center gap-5">
-                        <h1 className="text-[#FF1010] font-bold text-3xl ">Delete User</h1>
-                        <p className="text-[#676869] font-normal text-2xl ">Are you sure you want to delete this user?</p>
+                        <h1 className="text-[#FF1010] font-bold text-3xl ">Delete Restaurant Booking</h1>
+                        <p className="text-[#676869] font-normal text-2xl ">Are you sure you want to delete this Restaurant Booking?</p>
                       </div>
                     </DeleteUserModal>
                   )}

@@ -61,7 +61,7 @@ const bookingService = {
 
   updateRoomPrice: async (data: RoomPrice): Promise<RoomPrice> => {
     try {
-      const response = await axios.patch(`${baseApi}/booking/room-prices/luxury`, data);
+      const response = await axios.patch(`${baseApi}/booking/room-prices/${data.roomType}`, data);
       console.log("updatePrice:", response);
       toast.success(response.data.message);
       return response.data;

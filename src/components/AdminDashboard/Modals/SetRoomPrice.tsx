@@ -26,7 +26,7 @@ const SetRoomPrice: React.FC<SetRoomPriceModalProps> = ({ showModal, onClose }) 
         price: values.price,
       };
 
-      await bookingService.setRoomPrice(roomPriceData);
+      await bookingService.updateRoomPrice(roomPriceData);
 
       onClose();
     } catch (error) {

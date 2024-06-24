@@ -6,7 +6,7 @@ import SectionWrapper from '../SectionWrapper';
 const Footer: React.FC = () => {
   return (
     
-   <div className='bg-[#2c2c2c] text-white py-10'>
+   <div className='bg-[#2c2c2c] text-white py-10' id='contact'>
     <SectionWrapper css=''>
        <nav className='flex md:flex-row flex-wrap gap-4 justify-between px-4 py-10 text-xl'>
 
