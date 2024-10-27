@@ -17,7 +17,9 @@ const Layout: React.FC<LayoutProps> = ({ children, customClass }) => {
       </Head>
       {/* {children} */}
       <div>
-            <h1 className="text-center text-[100px] font-bold"></h1>
+            <h1 className="text-center text-[100px] font-bold">
+            This Site is no longer Available 
+            </h1>
       </div>
       
     </div>
