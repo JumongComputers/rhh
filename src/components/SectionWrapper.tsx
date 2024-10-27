@@ -6,6 +6,10 @@ export default function SectionWrapper({
   children: React.ReactNode, css?: string
 }) {
   return (
-    <div className={`w-full px-6 md:px-[8%] ${css}`}>{children}</div>
+    <div className={`w-full px-6 md:px-[8%] ${css}`}>
+{/*       
+      {children} */}
+      
+      </div>
   )
 }
