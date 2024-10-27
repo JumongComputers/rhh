@@ -16,6 +16,8 @@ const[roomPrices, setRoomPrices]  = useState<IBooking[]>(bookingData)
     try {
       const {data} = await axios.get(`${baseApi }/booking/room-prices`);
       setRoomPrices(data.data.data)
+      // console.log(data);
+      
     } catch (error) {
       console.error("Error fetching data:", error);
     }

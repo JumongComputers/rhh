@@ -1,10 +1,12 @@
 import React, { useState, Fragment, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import { ChevronLeft, ChevronRight, Eye, MoveLeft, Pencil, Search } from "lucide-react";
-import AddAdminModal from "../Modals/AddAdminModal";
-import EditAdminModal from "../Modals/EditAdminModal";
-import DeleteUserModal from "../Modals/DeleteUserModal";
+// import AddAdminModal from "../Modals/AddAdminModal";
+// import EditAdminModal from "../Modals/EditAdminModal";
+
+// import DeleteUserModal from "../Modals/DeleteUserModal";
 import { RestaurantTypes } from "@/types/restaurant";
+import DeleteRestaurantBookingModal from "../Modals/DeleteRestaurantBooking";
 
 interface StaffDetailsProps {
   restaurant: RestaurantTypes[];
@@ -30,7 +32,7 @@ const RestaurantDetails: React.FC<StaffDetailsProps> = ({ restaurant }) => {
   const [showModal, setShowModal] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-  const [selectedAdminId, setSelectedAdminId] = useState("");
+  const [selectedRestaurantId, setSelectedRestaurantId] = useState("");
 
   const handleViewRestaurantClick = (item: RestaurantTypes) => {
     setSelectedRestaurant(item);
@@ -124,7 +126,7 @@ const RestaurantDetails: React.FC<StaffDetailsProps> = ({ restaurant }) => {
                             <td className="py-3 text-[#FF0802] px-6">
                               <button
                                 onClick={() => {
-                                  setSelectedAdminId(item._id as string);
+                                  setSelectedRestaurantId(item._id as string);
                                   setShowModal(true);
                                 }}
                               >
@@ -136,7 +138,7 @@ const RestaurantDetails: React.FC<StaffDetailsProps> = ({ restaurant }) => {
                       );
                     })}
                   </tbody>
-                  {selectedAdminId && (
+                  {/* {selectedAdminId && (
                     <EditAdminModal
                       id={selectedAdminId}
                       visible={showEdit}
@@ -145,13 +147,13 @@ const RestaurantDetails: React.FC<StaffDetailsProps> = ({ restaurant }) => {
                         setShowEdit(false);
                       }}
                     />
-                  )}
-                  {selectedAdminId && (
-                    <DeleteUserModal
-                      id={selectedAdminId}
+                  )} */}
+                  {selectedRestaurantId && (
+                    <DeleteRestaurantBookingModal
+                      id={selectedRestaurantId}
                       visible={showModal}
                       onClose={() => {
-                        setSelectedAdminId("");
+                        setSelectedRestaurantId("");
                         setShowModal(false);
                       }}
                     >
@@ -159,7 +161,7 @@ const RestaurantDetails: React.FC<StaffDetailsProps> = ({ restaurant }) => {
                         <h1 className="text-[#FF1010] font-bold text-3xl ">Delete Restaurant Booking</h1>
                         <p className="text-[#676869] font-normal text-2xl ">Are you sure you want to delete this Restaurant Booking?</p>
                       </div>
-                    </DeleteUserModal>
+                    </DeleteRestaurantBookingModal>
                   )}
                 </table>
               )}

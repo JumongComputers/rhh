@@ -15,7 +15,11 @@ const Layout: React.FC<LayoutProps> = ({ children, customClass }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo.svg" />
       </Head>
-      {children}
+      {/* {children} */}
+      <div>
+            <h1 className="text-center text-[100px] font-bold"></h1>
+      </div>
+      
     </div>
   );
 };

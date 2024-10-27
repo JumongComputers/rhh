@@ -17,14 +17,14 @@ const bookingData : IBooking []= [
     image: "https://res.cloudinary.com/dyijwff8m/image/upload/v1702731443/gridex/026-OVI_9204_sxouhr.webp",
     numOfRooms: "1 king bed | 2 adults",
     roomType: "Deluxe",
-    text: "With our Deluxe Room, you will have everything you need for a comfortable stay and a good night’s sleep.",
+    text: "With our Deluxe Room, you will have everything you need for a comfortable stay and a good night’s sleep.  ",
     price: 0,
   },
   {
     image: "https://res.cloudinary.com/dyijwff8m/image/upload/v1702731449/gridex/055-OVI_9264_w3tdtj.webp",
     numOfRooms: "2 king bed | 4 adults",
     roomType: "Luxury",
-    text: "For extra space, book one of our Family suites. 2 connecting rooms with a shared bathroom.",
+    text: "For extra space, book one of our Family suites, it has 2 connecting rooms with a shared bathroom and other amenities.",
     price: 0,
   },
 

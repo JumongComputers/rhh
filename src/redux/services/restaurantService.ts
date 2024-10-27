@@ -17,7 +17,15 @@ const restaurantService = {
       console.log("all restaurant:", response);
       return response.data.data.data.booking;
     } catch (error: any) {
-      throw new Error(`Failed to get all admins: ${error.message}`);
+      throw new Error(`Failed to get all restaurant: ${error.message}`);
+    }
+  },
+
+  deleteRestaurantBooking: async (bookingId: string): Promise<void> => {
+    try {
+      const response = await axios.delete(`${baseApi}/booking/restaurant/${bookingId}`);
+    } catch (error: any) {
+      throw new Error(`Failed to delete booking: ${error.message}`);
     }
   },
 };
