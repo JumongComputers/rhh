@@ -29,10 +29,11 @@ const Home: React.FC<HomeProps> = ({ data }) => {
   
 
      <Layout customClass="min-h-screen w-full max-w-full">
-      <Hero />
+      Not Available 
+      {/* <Hero />
       <AboutHero />
         <BookRooms />
-      <Grid data={data} />
+      <Grid data={data} /> */}
 
     
     </Layout>
