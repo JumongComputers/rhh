@@ -1,5 +1,6 @@
 import AdminSidebar from "@/components/AdminDashboard/AdminSidebar/AdminSidebar";
 import AdminLayout from "@/components/Layouts/AdminLayout";
+import LayoutWrapper from "@/components/Layouts/LayoutWrapper";
 // import LayoutWrapper from "@/components/Layouts/LayoutWrapper";
 import "@/styles/globals.css";
 import axios from "axios";
@@ -34,7 +35,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <div>
-      {/* {isAdmin ? (
+      {isAdmin ? (
         <AdminLayout>
           <AdminSidebar>
             <div className="bg-gray-100 min-h-screen">
@@ -56,7 +57,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
           <ToastContainer />
         </LayoutWrapper>
-      )} */}
+      )}
     </div>
   );
 }
